@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "title": "Carsablanca — Le vrai prix de votre voiture",
+    "description": "Carsablanca calcule ce que votre future voiture vous coûtera vraiment chaque mois au Maroc : crédit ou mourabaha, assurance, carburant, entretien — en neuf comme en occasion."
+  },
+  "header": {
+    "how": "Comment ça marche",
+    "costs": "Ce qu'on calcule",
+    "cta": "Trouver ma voiture"
+  },
+  "hero": {
+    "kicker": "Le système d'exploitation de l'achat auto au Maroc",
+    "h1a": "Le",
+    "h1accent": "vrai prix",
+    "h1b": "de votre voiture.",
+    "h1line2": "Pas celui de l'annonce.",
+    "sub": "Carsablanca calcule ce que votre future voiture vous coûtera vraiment chaque mois — crédit ou mourabaha, assurance, carburant, entretien — et vous dit ce que votre budget peut acheter, en neuf comme en occasion.",
+    "budgetLabel": "Votre budget mensuel",
+    "budgetPlaceholder": "ex. 3 500",
+    "budgetUnit": "DH/mois",
+    "cta": "Trouver ma voiture",
+    "ctaHint": "Gratuit, sans compte — 60 secondes"
+  },
+  "receipt": {
+    "carName": "Dacia Sandero Stepway — neuve",
+    "carPrice": "169 900 DH",
+    "adQuote": "« 2 350 DH/mois » dit l'annonce…",
+    "lines": [
+      { "label": "Mensualité crédit (60 mois)", "value": "2 350" },
+      { "label": "Assurance tous risques", "value": "330" },
+      { "label": "Carburant — 10 000 km/an", "value": "735" },
+      { "label": "Entretien & fiabilité", "value": "250" }
+    ],
+    "totalLabel": "par mois, tout compris",
+    "total": "3 665 DH",
+    "stamp": "LE VRAI PRIX",
+    "footnote": "Exemple : apport 30 %, usage urbain à Casablanca. Estimations datées et sourcées."
+  },
+  "trust": {
+    "items": [
+      "Sources citées sur chaque chiffre",
+      "Données datées et vérifiées",
+      "Des estimations honnêtes, pas des promesses"
+    ],
+    "updated": "Mis à jour : juin 2026"
+  },
+  "how": {
+    "kicker": "Comment ça marche",
+    "title": "Trois étapes, zéro jargon",
+    "steps": [
+      {
+        "title": "Votre budget",
+        "body": "Cash ou mensualité. Crédit classique, LOA ou mourabaha — vous choisissez ce qui vous convient."
+      },
+      {
+        "title": "Vos besoins",
+        "body": "Famille, trajets, kilométrage, carburant. 60 secondes de questions simples."
+      },
+      {
+        "title": "Votre shortlist",
+        "body": "Des voitures classées par vrai coût mensuel, neuf et occasion comparés honnêtement."
+      }
+    ]
+  },
+  "costs": {
+    "kicker": "Ce qu'on calcule",
+    "title": "Six coûts. Aucun oublié.",
+    "sub": "Le prix d'achat n'est que le début de l'histoire. Voici ce que Carsablanca compte à votre place.",
+    "items": [
+      {
+        "title": "Financement",
+        "body": "Crédit classique, LOA et mourabaha comparés sur le coût total — pas juste la mensualité."
+      },
+      {
+        "title": "Assurance",
+        "body": "RC ou tous risques, estimée selon la puissance fiscale et la valeur du véhicule."
+      },
+      {
+        "title": "Carburant",
+        "body": "Votre kilométrage réel, la consommation du modèle, les prix du jour à la pompe."
+      },
+      {
+        "title": "Entretien",
+        "body": "Coûts réels par modèle et par âge — vidanges, pièces, main d'œuvre."
+      },
+      {
+        "title": "Fiabilité",
+        "body": "Les pannes connues de chaque modèle, à quel kilométrage, et ce qu'elles coûtent."
+      },
+      {
+        "title": "Revente",
+        "body": "La décote — le coût que personne ne vous montre, souvent le plus gros de tous."
+      }
+    ]
+  },
+  "vs": {
+    "kicker": "Le vrai dilemme",
+    "title": "169 900 DH : Sandero neuve ou Golf 2019 ?",
+    "newCol": {
+      "title": "Neuve",
+      "points": [
+        "Garantie constructeur, zéro surprise",
+        "Crédit moins cher, assurance maîtrisée",
+        "Mais la décote frappe fort les 3 premières années"
+      ]
+    },
+    "usedCol": {
+      "title": "Occasion",
+      "points": [
+        "Plus de voiture pour le même budget",
+        "La décote a déjà été payée par un autre",
+        "Mais entretien, fiabilité et risques à chiffrer"
+      ]
+    },
+    "tagline": "Carsablanca fait le calcul, pas le pari."
+  },
+  "roadmap": {
+    "kicker": "La suite du système",
+    "title": "Acheter n'est que le début",
+    "soon": "Bientôt",
+    "items": [
+      {
+        "title": "Vérification d'annonces",
+        "body": "Collez une annonce d'occasion, recevez un rapport : prix juste, points à inspecter, questions à poser."
+      },
+      {
+        "title": "Paperasse sans stress",
+        "body": "Carte grise, vignette, contrôle technique — les étapes guidées et les rappels au bon moment."
+      },
+      {
+        "title": "Devis réels",
+        "body": "Des offres de financement et d'assurance de vrais partenaires, comparées sans détour."
+      }
+    ]
+  },
+  "footer": {
+    "disclaimer": "Les chiffres affichés sont des estimations indicatives, basées sur des données publiques datées et sourcées. Ce ne sont ni des offres commerciales ni des conseils financiers. Vérifiez toujours avant d'acheter.",
+    "madeIn": "Fait au Maroc",
+    "rights": "© 2026 Carsablanca"
+  },
+  "stub": {
+    "kicker": "En construction",
+    "title": "Le moteur de décision arrive",
+    "body": "C'est exactement ce que nous construisons en ce moment : budget, besoins, et une shortlist classée par vrai coût mensuel. La page d'accueil donne le ton — le moteur suit.",
+    "steps": ["Budget", "Besoins", "Shortlist"],
+    "back": "Retour à l'accueil"
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "title": "Carsablanca — Your car's true price",
+    "description": "Carsablanca computes what your next car will really cost you each month in Morocco: financing or murabaha, insurance, fuel, maintenance — new or used."
+  },
+  "header": {
+    "how": "How it works",
+    "costs": "What we count",
+    "cta": "Find my car"
+  },
+  "hero": {
+    "kicker": "The operating system for car buying in Morocco",
+    "h1a": "Your car's",
+    "h1accent": "true price.",
+    "h1b": "",
+    "h1line2": "Not the one in the listing.",
+    "sub": "Carsablanca computes what your next car will really cost you each month — financing or murabaha, insurance, fuel, maintenance — and tells you what your budget can actually buy, new or used.",
+    "budgetLabel": "Your monthly budget",
+    "budgetPlaceholder": "e.g. 3,500",
+    "budgetUnit": "MAD/mo",
+    "cta": "Find my car",
+    "ctaHint": "Free, no account — 60 seconds"
+  },
+  "receipt": {
+    "carName": "Dacia Sandero Stepway — new",
+    "carPrice": "169,900 MAD",
+    "adQuote": "“2,350 MAD/mo,” says the listing…",
+    "lines": [
+      { "label": "Loan payment (60 months)", "value": "2,350" },
+      { "label": "Full coverage insurance", "value": "330" },
+      { "label": "Fuel — 10,000 km/year", "value": "735" },
+      { "label": "Maintenance & reliability", "value": "250" }
+    ],
+    "totalLabel": "per month, all in",
+    "total": "3,665 MAD",
+    "stamp": "TRUE PRICE",
+    "footnote": "Example: 30% down, city driving in Casablanca. Dated, sourced estimates."
+  },
+  "trust": {
+    "items": [
+      "A cited source on every number",
+      "Dated, verified data",
+      "Honest estimates, not promises"
+    ],
+    "updated": "Updated: June 2026"
+  },
+  "how": {
+    "kicker": "How it works",
+    "title": "Three steps, zero jargon",
+    "steps": [
+      {
+        "title": "Your budget",
+        "body": "Cash or monthly. Classic loan, lease-to-own, or murabaha — you pick what works for you."
+      },
+      {
+        "title": "Your needs",
+        "body": "Family, commute, mileage, fuel. Sixty seconds of simple questions."
+      },
+      {
+        "title": "Your shortlist",
+        "body": "Cars ranked by true monthly cost, new and used compared honestly."
+      }
+    ]
+  },
+  "costs": {
+    "kicker": "What we count",
+    "title": "Six costs. None forgotten.",
+    "sub": "The purchase price is only the start of the story. Here's what Carsablanca counts for you.",
+    "items": [
+      {
+        "title": "Financing",
+        "body": "Classic loan, lease-to-own, and murabaha compared on total cost — not just the monthly payment."
+      },
+      {
+        "title": "Insurance",
+        "body": "Liability or full coverage, estimated from fiscal horsepower and vehicle value."
+      },
+      {
+        "title": "Fuel",
+        "body": "Your real mileage, the model's consumption, today's pump prices."
+      },
+      {
+        "title": "Maintenance",
+        "body": "Real costs by model and age — oil changes, parts, labor."
+      },
+      {
+        "title": "Reliability",
+        "body": "Each model's known failures, at what mileage, and what they cost."
+      },
+      {
+        "title": "Resale",
+        "body": "Depreciation — the cost nobody shows you, often the biggest of all."
+      }
+    ]
+  },
+  "vs": {
+    "kicker": "The real dilemma",
+    "title": "169,900 MAD: new Sandero or 2019 Golf?",
+    "newCol": {
+      "title": "New",
+      "points": [
+        "Factory warranty, zero surprises",
+        "Cheaper credit, predictable insurance",
+        "But depreciation hits hard the first 3 years"
+      ]
+    },
+    "usedCol": {
+      "title": "Used",
+      "points": [
+        "More car for the same budget",
+        "Someone else already paid the depreciation",
+        "But maintenance, reliability and risk to price in"
+      ]
+    },
+    "tagline": "Carsablanca does the math, not the gamble."
+  },
+  "roadmap": {
+    "kicker": "Where the system goes next",
+    "title": "Buying is only the beginning",
+    "soon": "Soon",
+    "items": [
+      {
+        "title": "Listing checks",
+        "body": "Paste a used-car listing, get a report: fair price, what to inspect, questions to ask."
+      },
+      {
+        "title": "Paperwork without stress",
+        "body": "Registration card, road tax, technical inspection — guided steps and timely reminders."
+      },
+      {
+        "title": "Real quotes",
+        "body": "Financing and insurance offers from real partners, compared straight."
+      }
+    ]
+  },
+  "footer": {
+    "disclaimer": "Figures shown are indicative estimates based on dated, sourced public data. They are neither commercial offers nor financial advice. Always verify before you buy.",
+    "madeIn": "Made in Morocco",
+    "rights": "© 2026 Carsablanca"
+  },
+  "stub": {
+    "kicker": "Under construction",
+    "title": "The decision engine is coming",
+    "body": "This is exactly what we're building right now: budget, needs, and a shortlist ranked by true monthly cost. The landing page sets the tone — the engine follows.",
+    "steps": ["Budget", "Needs", "Shortlist"],
+    "back": "Back to home"
+  }
+}
