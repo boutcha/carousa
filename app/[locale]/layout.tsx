@@ -1,34 +1,48 @@
 import type { Metadata } from "next"
 import {
-  Fraunces,
-  Readex_Pro,
-  Schibsted_Grotesk,
-  Spline_Sans_Mono,
+  Archivo,
+  B612_Mono,
+  Big_Shoulders,
+  Big_Shoulders_Stencil,
+  Noto_Kufi_Arabic,
+  Tajawal,
 } from "next/font/google"
 import { isRtl, locales, type Locale } from "@/lib/i18n/config"
 import { getDictionary } from "@/lib/i18n/get-dictionary"
 import "../globals.css"
 
-const fraunces = Fraunces({
+const bigShoulders = Big_Shoulders({
   subsets: ["latin"],
-  style: ["normal", "italic"],
   axes: ["opsz"],
-  variable: "--font-fraunces",
+  variable: "--font-bigshoulders",
 })
 
-const schibsted = Schibsted_Grotesk({
+const bigShouldersStencil = Big_Shoulders_Stencil({
+  weight: "700",
   subsets: ["latin"],
-  variable: "--font-schibsted",
+  variable: "--font-stencil-latin",
 })
 
-const splineMono = Spline_Sans_Mono({
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-spline-mono",
+  variable: "--font-archivo",
 })
 
-const readex = Readex_Pro({
-  subsets: ["arabic", "latin"],
-  variable: "--font-readex",
+const b612Mono = B612_Mono({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-b612",
+})
+
+const notoKufi = Noto_Kufi_Arabic({
+  subsets: ["arabic"],
+  variable: "--font-kufi",
+})
+
+const tajawal = Tajawal({
+  weight: ["400", "500", "700"],
+  subsets: ["arabic"],
+  variable: "--font-tajawal",
 })
 
 export const dynamicParams = false
@@ -63,9 +77,9 @@ export default async function RootLayout({
     <html
       lang={locale}
       dir={isRtl(locale) ? "rtl" : "ltr"}
-      className={`${fraunces.variable} ${schibsted.variable} ${splineMono.variable} ${readex.variable} h-full antialiased`}
+      className={`${bigShoulders.variable} ${bigShouldersStencil.variable} ${archivo.variable} ${b612Mono.variable} ${notoKufi.variable} ${tajawal.variable} h-full antialiased`}
     >
-      <body className="grain relative flex min-h-svh flex-col bg-background font-sans text-foreground">
+      <body className="relative flex min-h-svh flex-col bg-background font-sans text-foreground">
         {children}
       </body>
     </html>

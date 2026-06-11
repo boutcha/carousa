@@ -1,148 +1,185 @@
 {
   "meta": {
-    "title": "Carsablanca — Your car's true price",
-    "description": "Carsablanca computes what your next car will really cost you each month in Morocco: financing or murabaha, insurance, fuel, maintenance — new or used."
+    "title": "Carsablanca — The true cost of a car, to the dirham",
+    "description": "Carsablanca computes the true monthly cost of a car in Morocco: financing (murabaha included), insurance, fuel, maintenance, depreciation. Everything counted, dated and sourced."
   },
   "header": {
-    "how": "How it works",
-    "costs": "What we count",
-    "cta": "Find my car"
+    "how": "The route",
+    "costs": "The ledger",
+    "cta": "Compute my true cost"
   },
   "hero": {
-    "kicker": "The operating system for car buying in Morocco",
-    "h1a": "Your car's",
-    "h1accent": "true price.",
-    "h1b": "",
-    "h1line2": "Not the one in the listing.",
-    "sub": "Carsablanca computes what your next car will really cost you each month — financing or murabaha, insurance, fuel, maintenance — and tells you what your budget can actually buy, new or used.",
+    "kicker": "PK 0 — CASABLANCA · DATA 06/2026",
+    "h1l1": "The true cost",
+    "h1l2": "of a car,",
+    "h1l3": "to the dirham.",
+    "sub": "Financing — murabaha included —, insurance, fuel, maintenance, depreciation. Everything counted, dated and sourced, before you sign anything.",
+    "stamp": "ESTIMATED, NOT PROMISED",
     "budgetLabel": "Your monthly budget",
-    "budgetPlaceholder": "e.g. 3,500",
-    "budgetUnit": "MAD/mo",
-    "cta": "Find my car",
-    "ctaHint": "Free, no account — 60 seconds"
+    "budgetPlaceholder": "3,500",
+    "budgetUnit": "MAD/MO",
+    "cta": "Compute my true cost",
+    "ctaHint": "An honest estimate in 60 seconds. Free, no account."
   },
-  "receipt": {
-    "carName": "Dacia Sandero Stepway — new",
-    "carPrice": "169,900 MAD",
-    "adQuote": "“2,350 MAD/mo,” says the listing…",
-    "lines": [
-      { "label": "Loan payment (60 months)", "value": "2,350" },
-      { "label": "Full coverage insurance", "value": "330" },
-      { "label": "Fuel — 10,000 km/year", "value": "735" },
-      { "label": "Maintenance & reliability", "value": "250" }
-    ],
-    "totalLabel": "per month, all in",
-    "total": "3,665 MAD",
-    "stamp": "TRUE PRICE",
-    "footnote": "Example: 30% down, city driving in Casablanca. Dated, sourced estimates."
+  "instrument": {
+    "caption": "The truth-odometer",
+    "total": "4 870",
+    "totalUnit": "MAD/MO",
+    "example": "Example: new Dacia Sandero Stepway, Casablanca — 60-month loan, 30% down.",
+    "legendContract": "Contractual",
+    "legendEstimate": "Estimate — dated source",
+    "segments": [
+      { "label": "Financing", "amount": "2,350", "share": 48, "type": "contract" },
+      { "label": "Insurance", "amount": "330", "share": 7, "type": "contract" },
+      { "label": "Fuel", "amount": "735", "share": 15, "type": "estimate" },
+      { "label": "Maintenance", "amount": "250", "share": 5, "type": "estimate" },
+      { "label": "Road tax & fees", "amount": "75", "share": 2, "type": "contract" },
+      { "label": "Depreciation", "amount": "1,130", "share": 23, "type": "estimate" }
+    ]
   },
   "trust": {
-    "items": [
-      "A cited source on every number",
-      "Dated, verified data",
-      "Honest estimates, not promises"
-    ],
-    "updated": "Updated: June 2026"
+    "plaques": [
+      "Dated data · 06/2026",
+      "Published sources",
+      "0 hidden commission",
+      "Estimates, not promises"
+    ]
   },
-  "how": {
-    "kicker": "How it works",
-    "title": "Three steps, zero jargon",
+  "roadbook": {
+    "kicker": "No. 01 — The route",
+    "title": "Three markers, zero jargon",
     "steps": [
       {
+        "pk": "PK 1",
         "title": "Your budget",
-        "body": "Cash or monthly. Classic loan, lease-to-own, or murabaha — you pick what works for you."
+        "body": "Cash or monthly — classic loan, lease-to-own, or murabaha. You set the limit, we respect it.",
+        "example": "Budget: 3,500 MAD/mo → 41 models"
       },
       {
+        "pk": "PK 2",
         "title": "Your needs",
-        "body": "Family, commute, mileage, fuel. Sixty seconds of simple questions."
+        "body": "Family, commute, mileage, fuel. Simple questions, 60 seconds.",
+        "example": "10,000 km/yr · 5 seats → 17 models"
       },
       {
+        "pk": "PK 3",
         "title": "Your shortlist",
-        "body": "Cars ranked by true monthly cost, new and used compared honestly."
+        "body": "Ranked by true monthly cost. New and used, face to face, no favoritism.",
+        "example": "No. 1: 4,870 MAD/mo, all in"
       }
     ]
   },
-  "costs": {
-    "kicker": "What we count",
+  "ledger": {
+    "kicker": "No. 02 — The ledger",
     "title": "Six costs. None forgotten.",
-    "sub": "The purchase price is only the start of the story. Here's what Carsablanca counts for you.",
-    "items": [
+    "sub": "The purchase price is only the start. Here is a real month, line by line — contractual figures in solid ink, estimates hatched.",
+    "rows": [
       {
-        "title": "Financing",
-        "body": "Classic loan, lease-to-own, and murabaha compared on total cost — not just the monthly payment."
+        "name": "Financing",
+        "note": "Classic loan, lease-to-own, or murabaha — compared on total cost, not the monthly payment.",
+        "amount": "2,350",
+        "share": 48,
+        "type": "contract",
+        "source": "Bank & participative-window rates · 06/2026"
       },
       {
-        "title": "Insurance",
-        "body": "Liability or full coverage, estimated from fiscal horsepower and vehicle value."
+        "name": "Insurance",
+        "note": "Liability or full coverage, by fiscal horsepower and vehicle value.",
+        "amount": "330",
+        "share": 7,
+        "type": "contract",
+        "source": "Insurer tariffs · 2026"
       },
       {
-        "title": "Fuel",
-        "body": "Your real mileage, the model's consumption, today's pump prices."
+        "name": "Fuel",
+        "note": "Your real mileage, the model's consumption, today's pump prices.",
+        "amount": "735",
+        "share": 15,
+        "type": "estimate",
+        "source": "Diesel 12.89 MAD/L · 05/2026"
       },
       {
-        "title": "Maintenance",
-        "body": "Real costs by model and age — oil changes, parts, labor."
+        "name": "Maintenance",
+        "note": "Service, parts, labor — by model and age.",
+        "amount": "250",
+        "share": 5,
+        "type": "estimate",
+        "source": "Workshop costs · 04/2026"
       },
       {
-        "title": "Reliability",
-        "body": "Each model's known failures, at what mileage, and what they cost."
+        "name": "Road tax & fees",
+        "note": "Road tax, technical inspection, file fees.",
+        "amount": "75",
+        "share": 2,
+        "type": "contract",
+        "source": "Official tariffs · 2026"
       },
       {
-        "title": "Resale",
-        "body": "Depreciation — the cost nobody shows you, often the biggest of all."
+        "name": "Depreciation",
+        "note": "What the car loses every month — the cost nobody displays.",
+        "amount": "1,130",
+        "share": 23,
+        "type": "estimate",
+        "source": "Used-market values · 04/2026"
       }
-    ]
+    ],
+    "totalLabel": "Total — the true cost",
+    "total": "4 870",
+    "totalUnit": "MAD/MO",
+    "footnote": "Example: new Dacia Sandero Stepway, Casablanca — 60-month loan, 30% down."
   },
-  "vs": {
-    "kicker": "The real dilemma",
-    "title": "169,900 MAD: new Sandero or 2019 Golf?",
-    "newCol": {
-      "title": "New",
-      "points": [
-        "Factory warranty, zero surprises",
-        "Cheaper credit, predictable insurance",
-        "But depreciation hits hard the first 3 years"
-      ]
-    },
-    "usedCol": {
-      "title": "Used",
-      "points": [
-        "More car for the same budget",
-        "Someone else already paid the depreciation",
-        "But maintenance, reliability and risk to price in"
-      ]
-    },
-    "tagline": "Carsablanca does the math, not the gamble."
+  "fourche": {
+    "kicker": "No. 03 — The fork",
+    "title": "Same budget, two roads.",
+    "sub": "169,900 MAD: a new Sandero Stepway or a 2019 Golf 7?",
+    "colNew": "New",
+    "colUsed": "Used",
+    "rows": [
+      { "label": "Purchase price", "newVal": "169,900", "usedVal": "165,000", "better": "tie" },
+      { "label": "Financing / mo", "newVal": "2,350", "usedVal": "2,290", "better": "used" },
+      { "label": "Insurance / mo", "newVal": "330", "usedVal": "290", "better": "used" },
+      { "label": "Fuel / mo", "newVal": "735", "usedVal": "700", "better": "used" },
+      { "label": "Maintenance / mo", "newVal": "250", "usedVal": "520", "better": "new" },
+      { "label": "Depreciation / mo", "newVal": "1,130", "usedVal": "620", "better": "used" },
+      { "label": "Tax & fees / mo", "newVal": "75", "usedVal": "95", "better": "new" }
+    ],
+    "totalLabel": "True cost / mo",
+    "newTotal": "4,870",
+    "usedTotal": "4,515",
+    "verdict": "Honest verdict: it depends. Here, used wins by 355 MAD/month — if the history is clean. That is exactly what we will verify for you.",
+    "unit": "MAD"
   },
   "roadmap": {
-    "kicker": "Where the system goes next",
+    "kicker": "No. 04 — The road ahead",
     "title": "Buying is only the beginning",
-    "soon": "Soon",
+    "here": "You are here",
     "items": [
-      {
-        "title": "Listing checks",
-        "body": "Paste a used-car listing, get a report: fair price, what to inspect, questions to ask."
-      },
-      {
-        "title": "Paperwork without stress",
-        "body": "Registration card, road tax, technical inspection — guided steps and timely reminders."
-      },
-      {
-        "title": "Real quotes",
-        "body": "Financing and insurance offers from real partners, compared straight."
-      }
+      { "date": "TODAY", "title": "V1 — The true monthly cost", "status": "now" },
+      { "date": "H2 2026", "title": "Used-listing verification", "status": "soon" },
+      { "date": "H1 2027", "title": "Paperwork without stress — registration, road tax, inspection", "status": "soon" },
+      { "date": "2027", "title": "Real quotes from financing & insurance partners", "status": "soon" }
     ]
   },
   "footer": {
-    "disclaimer": "Figures shown are indicative estimates based on dated, sourced public data. They are neither commercial offers nor financial advice. Always verify before you buy.",
+    "disclaimer": "Figures shown are indicative estimates, dated and sourced, based on public data. They are neither commercial offers nor financial advice. Always verify before signing.",
+    "sourcesTitle": "Sources",
+    "sources": [
+      "Loan & murabaha rates — banks and participative windows · 06/2026",
+      "Car insurance tariffs · 2026",
+      "Pump fuel prices · 05/2026",
+      "Maintenance costs observed in workshops · 04/2026",
+      "Road tax, inspection and official fees · 2026",
+      "Used-market values · 04/2026"
+    ],
+    "notarial": "Done in Casablanca — PK 0",
     "madeIn": "Made in Morocco",
     "rights": "© 2026 Carsablanca"
   },
   "stub": {
     "kicker": "Under construction",
     "title": "The decision engine is coming",
-    "body": "This is exactly what we're building right now: budget, needs, and a shortlist ranked by true monthly cost. The landing page sets the tone — the engine follows.",
+    "body": "This is exactly what we are building: your budget, your needs, and a shortlist ranked by true monthly cost — contractual figures in solid ink, estimates hatched.",
     "steps": ["Budget", "Needs", "Shortlist"],
-    "back": "Back to home"
+    "back": "Back to PK 0"
   }
 }

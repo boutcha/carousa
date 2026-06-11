@@ -3,10 +3,10 @@ import { getDictionary } from "@/lib/i18n/get-dictionary"
 import { SiteHeader } from "@/components/landing/site-header"
 import { Hero } from "@/components/landing/hero"
 import { TrustStrip } from "@/components/landing/trust-strip"
-import { HowItWorks } from "@/components/landing/how-it-works"
-import { CostGrid } from "@/components/landing/cost-grid"
-import { NewVsUsed } from "@/components/landing/new-vs-used"
-import { Roadmap } from "@/components/landing/roadmap"
+import { Roadbook } from "@/components/landing/roadbook"
+import { GrandLivre } from "@/components/landing/grand-livre"
+import { Fourche } from "@/components/landing/fourche"
+import { RoadmapBornes } from "@/components/landing/roadmap-bornes"
 import { SiteFooter } from "@/components/landing/site-footer"
 
 export default async function LandingPage({
@@ -23,10 +23,10 @@ export default async function LandingPage({
       <main>
         <Hero dict={dict} locale={locale} />
         <TrustStrip dict={dict} />
-        <HowItWorks dict={dict} />
-        <CostGrid dict={dict} />
-        <NewVsUsed dict={dict} />
-        <Roadmap dict={dict} />
+        <Roadbook dict={dict} />
+        <GrandLivre dict={dict} />
+        <Fourche dict={dict} />
+        <RoadmapBornes dict={dict} />
       </main>
       <SiteFooter dict={dict} locale={locale} />
     </>

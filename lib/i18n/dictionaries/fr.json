@@ -1,148 +1,185 @@
 {
   "meta": {
-    "title": "Carsablanca — Le vrai prix de votre voiture",
-    "description": "Carsablanca calcule ce que votre future voiture vous coûtera vraiment chaque mois au Maroc : crédit ou mourabaha, assurance, carburant, entretien — en neuf comme en occasion."
+    "title": "Carsablanca — Le vrai coût d'une voiture, au dirham près",
+    "description": "Carsablanca calcule le vrai coût mensuel d'une voiture au Maroc : financement (mourabaha comprise), assurance, carburant, entretien, décote. Tout compté, daté et sourcé."
   },
   "header": {
-    "how": "Comment ça marche",
-    "costs": "Ce qu'on calcule",
-    "cta": "Trouver ma voiture"
+    "how": "Le parcours",
+    "costs": "Le grand livre",
+    "cta": "Calculer mon vrai coût"
   },
   "hero": {
-    "kicker": "Le système d'exploitation de l'achat auto au Maroc",
-    "h1a": "Le",
-    "h1accent": "vrai prix",
-    "h1b": "de votre voiture.",
-    "h1line2": "Pas celui de l'annonce.",
-    "sub": "Carsablanca calcule ce que votre future voiture vous coûtera vraiment chaque mois — crédit ou mourabaha, assurance, carburant, entretien — et vous dit ce que votre budget peut acheter, en neuf comme en occasion.",
+    "kicker": "PK 0 — CASABLANCA · DONNÉES DU 06/2026",
+    "h1l1": "Le vrai coût",
+    "h1l2": "d'une voiture,",
+    "h1l3": "au dirham près.",
+    "sub": "Financement — mourabaha comprise —, assurance, carburant, entretien, décote. Tout compté, daté et sourcé, avant que vous ne signiez quoi que ce soit.",
+    "stamp": "ESTIMÉ, PAS PROMIS",
     "budgetLabel": "Votre budget mensuel",
-    "budgetPlaceholder": "ex. 3 500",
-    "budgetUnit": "DH/mois",
-    "cta": "Trouver ma voiture",
-    "ctaHint": "Gratuit, sans compte — 60 secondes"
+    "budgetPlaceholder": "3 500",
+    "budgetUnit": "DH/MOIS",
+    "cta": "Calculer mon vrai coût",
+    "ctaHint": "Une estimation honnête en 60 secondes. Gratuit, sans compte."
   },
-  "receipt": {
-    "carName": "Dacia Sandero Stepway — neuve",
-    "carPrice": "169 900 DH",
-    "adQuote": "« 2 350 DH/mois » dit l'annonce…",
-    "lines": [
-      { "label": "Mensualité crédit (60 mois)", "value": "2 350" },
-      { "label": "Assurance tous risques", "value": "330" },
-      { "label": "Carburant — 10 000 km/an", "value": "735" },
-      { "label": "Entretien & fiabilité", "value": "250" }
-    ],
-    "totalLabel": "par mois, tout compris",
-    "total": "3 665 DH",
-    "stamp": "LE VRAI PRIX",
-    "footnote": "Exemple : apport 30 %, usage urbain à Casablanca. Estimations datées et sourcées."
+  "instrument": {
+    "caption": "Le compteur-vérité",
+    "total": "4 870",
+    "totalUnit": "DH/MOIS",
+    "example": "Exemple : Dacia Sandero Stepway neuve, Casablanca — crédit 60 mois, apport 30 %.",
+    "legendContract": "Contractuel",
+    "legendEstimate": "Estimé — source datée",
+    "segments": [
+      { "label": "Financement", "amount": "2 350", "share": 48, "type": "contract" },
+      { "label": "Assurance", "amount": "330", "share": 7, "type": "contract" },
+      { "label": "Carburant", "amount": "735", "share": 15, "type": "estimate" },
+      { "label": "Entretien", "amount": "250", "share": 5, "type": "estimate" },
+      { "label": "Vignette & frais", "amount": "75", "share": 2, "type": "contract" },
+      { "label": "Décote", "amount": "1 130", "share": 23, "type": "estimate" }
+    ]
   },
   "trust": {
-    "items": [
-      "Sources citées sur chaque chiffre",
-      "Données datées et vérifiées",
-      "Des estimations honnêtes, pas des promesses"
-    ],
-    "updated": "Mis à jour : juin 2026"
+    "plaques": [
+      "Données datées · 06/2026",
+      "Sources publiées",
+      "0 commission cachée",
+      "Des estimations, pas des promesses"
+    ]
   },
-  "how": {
-    "kicker": "Comment ça marche",
-    "title": "Trois étapes, zéro jargon",
+  "roadbook": {
+    "kicker": "N° 01 — Le parcours",
+    "title": "Trois bornes, zéro jargon",
     "steps": [
       {
+        "pk": "PK 1",
         "title": "Votre budget",
-        "body": "Cash ou mensualité. Crédit classique, LOA ou mourabaha — vous choisissez ce qui vous convient."
+        "body": "Cash ou mensualité — crédit classique, LOA ou mourabaha. Vous fixez la limite, on la respecte.",
+        "example": "Budget : 3 500 DH/mois → 41 modèles"
       },
       {
+        "pk": "PK 2",
         "title": "Vos besoins",
-        "body": "Famille, trajets, kilométrage, carburant. 60 secondes de questions simples."
+        "body": "Famille, trajets, kilométrage, carburant. Des questions simples, en 60 secondes.",
+        "example": "10 000 km/an · 5 places → 17 modèles"
       },
       {
+        "pk": "PK 3",
         "title": "Votre shortlist",
-        "body": "Des voitures classées par vrai coût mensuel, neuf et occasion comparés honnêtement."
+        "body": "Classée par vrai coût mensuel. Neuf et occasion, face à face, sans favoritisme.",
+        "example": "N° 1 : 4 870 DH/mois, tout compris"
       }
     ]
   },
-  "costs": {
-    "kicker": "Ce qu'on calcule",
+  "ledger": {
+    "kicker": "N° 02 — Le grand livre",
     "title": "Six coûts. Aucun oublié.",
-    "sub": "Le prix d'achat n'est que le début de l'histoire. Voici ce que Carsablanca compte à votre place.",
-    "items": [
+    "sub": "Le prix d'achat n'est que le début. Voici un mois réel, poste par poste — chiffres contractuels en encre pleine, estimations en hachures.",
+    "rows": [
       {
-        "title": "Financement",
-        "body": "Crédit classique, LOA et mourabaha comparés sur le coût total — pas juste la mensualité."
+        "name": "Financement",
+        "note": "Crédit classique, LOA ou mourabaha — comparés sur le coût total, pas sur la mensualité.",
+        "amount": "2 350",
+        "share": 48,
+        "type": "contract",
+        "source": "Barèmes banques & fenêtres participatives · 06/2026"
       },
       {
-        "title": "Assurance",
-        "body": "RC ou tous risques, estimée selon la puissance fiscale et la valeur du véhicule."
+        "name": "Assurance",
+        "note": "RC ou tous risques, selon la puissance fiscale et la valeur du véhicule.",
+        "amount": "330",
+        "share": 7,
+        "type": "contract",
+        "source": "Barèmes assureurs · 2026"
       },
       {
-        "title": "Carburant",
-        "body": "Votre kilométrage réel, la consommation du modèle, les prix du jour à la pompe."
+        "name": "Carburant",
+        "note": "Votre kilométrage réel, la consommation du modèle, les prix du jour à la pompe.",
+        "amount": "735",
+        "share": 15,
+        "type": "estimate",
+        "source": "Gasoil 12,89 DH/L · 05/2026"
       },
       {
-        "title": "Entretien",
-        "body": "Coûts réels par modèle et par âge — vidanges, pièces, main d'œuvre."
+        "name": "Entretien",
+        "note": "Révisions, pièces, main-d'œuvre — par modèle et par âge.",
+        "amount": "250",
+        "share": 5,
+        "type": "estimate",
+        "source": "Coûts ateliers · 04/2026"
       },
       {
-        "title": "Fiabilité",
-        "body": "Les pannes connues de chaque modèle, à quel kilométrage, et ce qu'elles coûtent."
+        "name": "Vignette & frais",
+        "note": "Vignette, contrôle technique, frais de dossier.",
+        "amount": "75",
+        "share": 2,
+        "type": "contract",
+        "source": "Tarifs officiels · 2026"
       },
       {
-        "title": "Revente",
-        "body": "La décote — le coût que personne ne vous montre, souvent le plus gros de tous."
+        "name": "Décote",
+        "note": "Ce que la voiture perd chaque mois — le coût que personne n'affiche.",
+        "amount": "1 130",
+        "share": 23,
+        "type": "estimate",
+        "source": "Cotes occasion · 04/2026"
       }
-    ]
+    ],
+    "totalLabel": "Total — le vrai coût",
+    "total": "4 870",
+    "totalUnit": "DH/MOIS",
+    "footnote": "Exemple : Dacia Sandero Stepway neuve, Casablanca — crédit 60 mois, apport 30 %."
   },
-  "vs": {
-    "kicker": "Le vrai dilemme",
-    "title": "169 900 DH : Sandero neuve ou Golf 2019 ?",
-    "newCol": {
-      "title": "Neuve",
-      "points": [
-        "Garantie constructeur, zéro surprise",
-        "Crédit moins cher, assurance maîtrisée",
-        "Mais la décote frappe fort les 3 premières années"
-      ]
-    },
-    "usedCol": {
-      "title": "Occasion",
-      "points": [
-        "Plus de voiture pour le même budget",
-        "La décote a déjà été payée par un autre",
-        "Mais entretien, fiabilité et risques à chiffrer"
-      ]
-    },
-    "tagline": "Carsablanca fait le calcul, pas le pari."
+  "fourche": {
+    "kicker": "N° 03 — La fourche",
+    "title": "Même budget, deux routes.",
+    "sub": "169 900 DH : Sandero Stepway neuve ou Golf 7 de 2019 ?",
+    "colNew": "Neuve",
+    "colUsed": "Occasion",
+    "rows": [
+      { "label": "Prix d'achat", "newVal": "169 900", "usedVal": "165 000", "better": "tie" },
+      { "label": "Financement / mois", "newVal": "2 350", "usedVal": "2 290", "better": "used" },
+      { "label": "Assurance / mois", "newVal": "330", "usedVal": "290", "better": "used" },
+      { "label": "Carburant / mois", "newVal": "735", "usedVal": "700", "better": "used" },
+      { "label": "Entretien / mois", "newVal": "250", "usedVal": "520", "better": "new" },
+      { "label": "Décote / mois", "newVal": "1 130", "usedVal": "620", "better": "used" },
+      { "label": "Vignette & frais / mois", "newVal": "75", "usedVal": "95", "better": "new" }
+    ],
+    "totalLabel": "Vrai coût / mois",
+    "newTotal": "4 870",
+    "usedTotal": "4 515",
+    "verdict": "Verdict honnête : ça dépend. Ici, l'occasion gagne 355 DH/mois — si l'historique est propre. C'est exactement ce que nous vérifierons pour vous.",
+    "unit": "DH"
   },
   "roadmap": {
-    "kicker": "La suite du système",
+    "kicker": "N° 04 — La route devant",
     "title": "Acheter n'est que le début",
-    "soon": "Bientôt",
+    "here": "Vous êtes ici",
     "items": [
-      {
-        "title": "Vérification d'annonces",
-        "body": "Collez une annonce d'occasion, recevez un rapport : prix juste, points à inspecter, questions à poser."
-      },
-      {
-        "title": "Paperasse sans stress",
-        "body": "Carte grise, vignette, contrôle technique — les étapes guidées et les rappels au bon moment."
-      },
-      {
-        "title": "Devis réels",
-        "body": "Des offres de financement et d'assurance de vrais partenaires, comparées sans détour."
-      }
+      { "date": "AUJOURD'HUI", "title": "V1 — Le vrai coût mensuel", "status": "now" },
+      { "date": "S2 2026", "title": "Vérification d'annonces occasion", "status": "soon" },
+      { "date": "S1 2027", "title": "Paperasse sans stress — carte grise, vignette, contrôle technique", "status": "soon" },
+      { "date": "2027", "title": "Devis réels de partenaires financement & assurance", "status": "soon" }
     ]
   },
   "footer": {
-    "disclaimer": "Les chiffres affichés sont des estimations indicatives, basées sur des données publiques datées et sourcées. Ce ne sont ni des offres commerciales ni des conseils financiers. Vérifiez toujours avant d'acheter.",
+    "disclaimer": "Les chiffres affichés sont des estimations indicatives, datées et sourcées, fondées sur des données publiques. Ce ne sont ni des offres commerciales ni des conseils financiers. Vérifiez toujours avant de signer.",
+    "sourcesTitle": "Sources",
+    "sources": [
+      "Barèmes crédit & mourabaha — banques et fenêtres participatives · 06/2026",
+      "Barèmes assurance automobile · 2026",
+      "Prix des carburants à la pompe · 05/2026",
+      "Coûts d'entretien constatés en ateliers · 04/2026",
+      "Vignette, contrôle technique et frais officiels · 2026",
+      "Cotes du marché de l'occasion · 04/2026"
+    ],
+    "notarial": "Fait à Casablanca — PK 0",
     "madeIn": "Fait au Maroc",
     "rights": "© 2026 Carsablanca"
   },
   "stub": {
     "kicker": "En construction",
     "title": "Le moteur de décision arrive",
-    "body": "C'est exactement ce que nous construisons en ce moment : budget, besoins, et une shortlist classée par vrai coût mensuel. La page d'accueil donne le ton — le moteur suit.",
+    "body": "C'est exactement ce que nous construisons : votre budget, vos besoins, et une shortlist classée par vrai coût mensuel — chiffres contractuels en encre pleine, estimations en hachures.",
     "steps": ["Budget", "Besoins", "Shortlist"],
-    "back": "Retour à l'accueil"
+    "back": "Retour au PK 0"
   }
 }

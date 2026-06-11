@@ -2,29 +2,20 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { localeLabels, locales, type Locale } from "@/lib/i18n/config"
 
-export function LocaleSwitcher({
-  current,
-  onDark = false,
-}: {
-  current: Locale
-  onDark?: boolean
-}) {
+/* Plate tabs — like the stacked region plates on a Moroccan registration */
+export function LocaleSwitcher({ current }: { current: Locale }) {
   return (
-    <div className="flex items-center gap-1 font-mono text-xs">
+    <div className="flex items-center gap-1.5 font-mono text-[11px]">
       {locales.map((locale) => (
         <Link
           key={locale}
           href={`/${locale}`}
           aria-current={locale === current ? "page" : undefined}
           className={cn(
-            "rounded-sm px-1.5 py-1 transition-colors",
+            "border px-2 py-1 leading-none transition-colors",
             locale === current
-              ? onDark
-                ? "bg-background text-foreground"
-                : "bg-foreground text-background"
-              : onDark
-                ? "text-background/60 hover:text-background"
-                : "text-foreground/60 hover:text-foreground"
+              ? "border-signal bg-signal text-asphalte"
+              : "border-signal/25 text-signal/60 hover:border-signal/60 hover:text-signal"
           )}
         >
           {localeLabels[locale]}
