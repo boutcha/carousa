@@ -22,7 +22,7 @@ export function SiteHeader({
           Carsablanca
         </Link>
         <nav className="hidden items-center gap-8 text-sm font-medium text-signal/65 md:flex">
-          <a href="#how" className="transition-colors hover:text-signal">
+          <a href="#cars" className="transition-colors hover:text-signal">
             {dict.header.how}
           </a>
           <a href="#costs" className="transition-colors hover:text-signal">

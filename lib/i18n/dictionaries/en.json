@@ -4,22 +4,74 @@
     "description": "Carsablanca computes the true monthly cost of a car in Morocco: financing (murabaha included), insurance, fuel, maintenance, depreciation. Everything counted, dated and sourced."
   },
   "header": {
-    "how": "The route",
+    "how": "The selection",
     "costs": "The ledger",
     "cta": "Compute my true cost"
   },
   "hero": {
     "kicker": "PK 0 — CASABLANCA · DATA 06/2026",
-    "h1l1": "The true cost",
-    "h1l2": "of a car,",
-    "h1l3": "to the dirham.",
-    "sub": "Financing — murabaha included —, insurance, fuel, maintenance, depreciation. Everything counted, dated and sourced, before you sign anything.",
+    "h1l1": "Your next car,",
+    "h1l2": "found.",
+    "h1l3": "Proven to the dirham.",
+    "sub": "Give us your budget. Carsablanca shows you the cars — new and used — then each one's true monthly cost: financing, murabaha included, insurance, fuel, maintenance, depreciation.",
     "stamp": "ESTIMATED, NOT PROMISED",
     "budgetLabel": "Your monthly budget",
     "budgetPlaceholder": "3,500",
     "budgetUnit": "MAD/MO",
     "cta": "Compute my true cost",
     "ctaHint": "An honest estimate in 60 seconds. Free, no account."
+  },
+  "showcase": {
+    "name": "Dacia Sandero Stepway",
+    "badge": "New · 0 km",
+    "price": "169,900",
+    "priceUnit": "MAD",
+    "trueLabel": "True monthly cost",
+    "monthly": "4,870",
+    "monthlyUnit": "MAD/mo",
+    "dim": "4,099 mm"
+  },
+  "selection": {
+    "kicker": "No. 01 — The selection",
+    "titlePre": "What",
+    "budget": "5,000",
+    "budgetUnit": "MAD/MO",
+    "titlePost": "really buys",
+    "sub": "Three honest answers to the same budget — new and used face to face, dated and sourced figures.",
+    "priceLabel": "Listed price",
+    "priceUnit": "MAD",
+    "trueLabel": "True monthly cost",
+    "monthlyUnit": "MAD/mo",
+    "note": "All-in monthlies — financing, insurance, fuel, maintenance, depreciation. Dated estimates · 06/2026.",
+    "cars": [
+      {
+        "body": "stepway",
+        "name": "Dacia Sandero Stepway",
+        "badge": "New",
+        "badgeType": "new",
+        "detail": "0 km · 3-yr warranty",
+        "price": "169,900",
+        "monthly": "4,870"
+      },
+      {
+        "body": "citadine",
+        "name": "Renault Clio 5",
+        "badge": "Used",
+        "badgeType": "used",
+        "detail": "2021 · 45,000 km",
+        "price": "135,000",
+        "monthly": "3,980"
+      },
+      {
+        "body": "suv",
+        "name": "Dacia Duster",
+        "badge": "Used",
+        "badgeType": "used",
+        "detail": "2020 · 88,000 km",
+        "price": "152,000",
+        "monthly": "4,410"
+      }
+    ]
   },
   "instrument": {
     "caption": "The truth-odometer",
@@ -46,7 +98,7 @@
     ]
   },
   "roadbook": {
-    "kicker": "No. 01 — The route",
+    "kicker": "No. 02 — The route",
     "title": "Three markers, zero jargon",
     "steps": [
       {
@@ -65,12 +117,12 @@
         "pk": "PK 3",
         "title": "Your shortlist",
         "body": "Ranked by true monthly cost. New and used, face to face, no favoritism.",
-        "example": "No. 1: 4,870 MAD/mo, all in"
+        "example": "No. 1: 3,460 MAD/mo, all in"
       }
     ]
   },
   "ledger": {
-    "kicker": "No. 02 — The ledger",
+    "kicker": "No. 03 — The ledger",
     "title": "Six costs. None forgotten.",
     "sub": "The purchase price is only the start. Here is a real month, line by line — contractual figures in solid ink, estimates hatched.",
     "rows": [
@@ -129,7 +181,7 @@
     "footnote": "Example: new Dacia Sandero Stepway, Casablanca — 60-month loan, 30% down."
   },
   "fourche": {
-    "kicker": "No. 03 — The fork",
+    "kicker": "No. 04 — The fork",
     "title": "Same budget, two roads.",
     "sub": "169,900 MAD: a new Sandero Stepway or a 2019 Golf 7?",
     "colNew": "New",
@@ -150,7 +202,7 @@
     "unit": "MAD"
   },
   "roadmap": {
-    "kicker": "No. 04 — The road ahead",
+    "kicker": "No. 05 — The road ahead",
     "title": "Buying is only the beginning",
     "here": "You are here",
     "items": [

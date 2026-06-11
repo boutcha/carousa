@@ -4,22 +4,74 @@
     "description": "Carsablanca calcule le vrai coût mensuel d'une voiture au Maroc : financement (mourabaha comprise), assurance, carburant, entretien, décote. Tout compté, daté et sourcé."
   },
   "header": {
-    "how": "Le parcours",
+    "how": "La sélection",
     "costs": "Le grand livre",
     "cta": "Calculer mon vrai coût"
   },
   "hero": {
     "kicker": "PK 0 — CASABLANCA · DONNÉES DU 06/2026",
-    "h1l1": "Le vrai coût",
-    "h1l2": "d'une voiture,",
-    "h1l3": "au dirham près.",
-    "sub": "Financement — mourabaha comprise —, assurance, carburant, entretien, décote. Tout compté, daté et sourcé, avant que vous ne signiez quoi que ce soit.",
+    "h1l1": "Votre prochaine",
+    "h1l2": "voiture, trouvée.",
+    "h1l3": "Prouvée au dirham.",
+    "sub": "Donnez votre budget. Carsablanca vous montre les voitures — neuves et occasion — puis le vrai coût mensuel de chacune : financement, mourabaha comprise, assurance, carburant, entretien, décote.",
     "stamp": "ESTIMÉ, PAS PROMIS",
     "budgetLabel": "Votre budget mensuel",
     "budgetPlaceholder": "3 500",
     "budgetUnit": "DH/MOIS",
     "cta": "Calculer mon vrai coût",
     "ctaHint": "Une estimation honnête en 60 secondes. Gratuit, sans compte."
+  },
+  "showcase": {
+    "name": "Dacia Sandero Stepway",
+    "badge": "Neuve · 0 km",
+    "price": "169 900",
+    "priceUnit": "DH",
+    "trueLabel": "Vrai coût mensuel",
+    "monthly": "4 870",
+    "monthlyUnit": "DH/mois",
+    "dim": "4 099 mm"
+  },
+  "selection": {
+    "kicker": "N° 01 — La sélection",
+    "titlePre": "Ce que",
+    "budget": "5 000",
+    "budgetUnit": "DH/MOIS",
+    "titlePost": "achète vraiment",
+    "sub": "Trois réponses honnêtes au même budget — neuf et occasion face à face, chiffres datés et sourcés.",
+    "priceLabel": "Prix affiché",
+    "priceUnit": "DH",
+    "trueLabel": "Vrai coût mensuel",
+    "monthlyUnit": "DH/mois",
+    "note": "Mensualités tout compris — financement, assurance, carburant, entretien, décote. Estimations datées · 06/2026.",
+    "cars": [
+      {
+        "body": "stepway",
+        "name": "Dacia Sandero Stepway",
+        "badge": "Neuve",
+        "badgeType": "new",
+        "detail": "0 km · garantie 3 ans",
+        "price": "169 900",
+        "monthly": "4 870"
+      },
+      {
+        "body": "citadine",
+        "name": "Renault Clio 5",
+        "badge": "Occasion",
+        "badgeType": "used",
+        "detail": "2021 · 45 000 km",
+        "price": "135 000",
+        "monthly": "3 980"
+      },
+      {
+        "body": "suv",
+        "name": "Dacia Duster",
+        "badge": "Occasion",
+        "badgeType": "used",
+        "detail": "2020 · 88 000 km",
+        "price": "152 000",
+        "monthly": "4 410"
+      }
+    ]
   },
   "instrument": {
     "caption": "Le compteur-vérité",
@@ -46,7 +98,7 @@
     ]
   },
   "roadbook": {
-    "kicker": "N° 01 — Le parcours",
+    "kicker": "N° 02 — Le parcours",
     "title": "Trois bornes, zéro jargon",
     "steps": [
       {
@@ -65,12 +117,12 @@
         "pk": "PK 3",
         "title": "Votre shortlist",
         "body": "Classée par vrai coût mensuel. Neuf et occasion, face à face, sans favoritisme.",
-        "example": "N° 1 : 4 870 DH/mois, tout compris"
+        "example": "N° 1 : 3 460 DH/mois, tout compris"
       }
     ]
   },
   "ledger": {
-    "kicker": "N° 02 — Le grand livre",
+    "kicker": "N° 03 — Le grand livre",
     "title": "Six coûts. Aucun oublié.",
     "sub": "Le prix d'achat n'est que le début. Voici un mois réel, poste par poste — chiffres contractuels en encre pleine, estimations en hachures.",
     "rows": [
@@ -129,7 +181,7 @@
     "footnote": "Exemple : Dacia Sandero Stepway neuve, Casablanca — crédit 60 mois, apport 30 %."
   },
   "fourche": {
-    "kicker": "N° 03 — La fourche",
+    "kicker": "N° 04 — La fourche",
     "title": "Même budget, deux routes.",
     "sub": "169 900 DH : Sandero Stepway neuve ou Golf 7 de 2019 ?",
     "colNew": "Neuve",
@@ -150,7 +202,7 @@
     "unit": "DH"
   },
   "roadmap": {
-    "kicker": "N° 04 — La route devant",
+    "kicker": "N° 05 — La route devant",
     "title": "Acheter n'est que le début",
     "here": "Vous êtes ici",
     "items": [

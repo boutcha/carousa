@@ -363,6 +363,47 @@ html[dir="rtl"] {
   }
 }
 
+/* Car drive-in: the vehicle arrives, wheels turning — runs once on load */
+.drive {
+  animation: drive 1.5s cubic-bezier(0.16, 0.8, 0.24, 1) both;
+}
+
+[dir="rtl"] .drive {
+  --drive-from: 58%;
+}
+
+@keyframes drive {
+  from {
+    opacity: 0;
+    transform: translateX(var(--drive-from, -58%));
+  }
+  20% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.wheel {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.drive .wheel {
+  animation: wheelspin 1.5s cubic-bezier(0.16, 0.8, 0.24, 1) both;
+}
+
+@keyframes wheelspin {
+  from {
+    transform: rotate(-520deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .odo-col,
   .stamp-strike,
@@ -370,7 +411,9 @@ html[dir="rtl"] {
   .rise,
   .view-rise,
   .centerline,
-  .caret-blink {
+  .caret-blink,
+  .drive,
+  .drive .wheel {
     animation: none;
     opacity: 1;
   }

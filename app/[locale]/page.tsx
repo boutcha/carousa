@@ -3,6 +3,7 @@ import { getDictionary } from "@/lib/i18n/get-dictionary"
 import { SiteHeader } from "@/components/landing/site-header"
 import { Hero } from "@/components/landing/hero"
 import { TrustStrip } from "@/components/landing/trust-strip"
+import { Selection } from "@/components/landing/selection"
 import { Roadbook } from "@/components/landing/roadbook"
 import { GrandLivre } from "@/components/landing/grand-livre"
 import { Fourche } from "@/components/landing/fourche"
@@ -23,6 +24,7 @@ export default async function LandingPage({
       <main>
         <Hero dict={dict} locale={locale} />
         <TrustStrip dict={dict} />
+        <Selection dict={dict} />
         <Roadbook dict={dict} />
         <GrandLivre dict={dict} />
         <Fourche dict={dict} />
