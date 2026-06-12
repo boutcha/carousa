@@ -12,6 +12,7 @@ import {
 import { SiteFooter } from "@/components/landing/site-footer"
 import { SiteHeader } from "@/components/landing/site-header"
 import { MobileAdvisorForm } from "@/components/matching/mobile-advisor-form"
+import { ResultsWorkbench } from "@/components/matching/results-workbench"
 import { getCatalogCandidates } from "@/lib/matching/catalog"
 import {
   parseMatchCriteria,
@@ -194,7 +195,7 @@ export default async function TrouverPage({
             ) : matches.length === 0 ? (
               <StateMessage title={t.emptyTitle} body={t.emptyBody} />
             ) : (
-              <div className="mt-8 grid gap-4 lg:grid-cols-3">
+              <ResultsWorkbench locale={locale} labels={t} criteria={criteria}>
                 {matches.map((match, index) => (
                   <MatchCard
                     key={match.candidate.id}
@@ -207,7 +208,7 @@ export default async function TrouverPage({
                     monthlyUnit={dict.selection.monthlyUnit}
                   />
                 ))}
-              </div>
+              </ResultsWorkbench>
             )}
           </div>
         </section>
@@ -333,6 +334,12 @@ function MatchCard({
     { label: labels.breakdown.depreciation, value: estimate.depreciationMad },
   ]
   const maxBreakdown = Math.max(...breakdown.map((item) => item.value))
+  const marketLabel =
+    candidate.availabilityScope === "new_ma"
+      ? labels.candidateLabels.new
+      : candidate.availabilityScope === "imported_edge_case"
+        ? labels.candidateLabels.import
+        : labels.candidateLabels.used
   const inferredFuelLabel =
     labels.fuelOptions.find((option) => option.value === match.inferredFuel)?.label ??
     match.inferredFuel
@@ -341,9 +348,14 @@ function MatchCard({
     <article className="plate flex min-h-[520px] flex-col bg-bitume">
       <div className="border-b border-signal/12 p-4">
         <div className="flex items-start justify-between gap-3">
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-jaune">
-            N° {String(index + 1).padStart(2, "0")}
-          </p>
+          <div className="flex flex-wrap items-center gap-2">
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-jaune">
+              N° {String(index + 1).padStart(2, "0")}
+            </p>
+            <span className="border border-signal/15 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-signal/60">
+              {marketLabel}
+            </span>
+          </div>
           <span className="font-stencil text-4xl text-signal/10">{index + 1}</span>
         </div>
         <h3 className="mt-6 font-display text-3xl font-bold uppercase leading-none text-signal">
