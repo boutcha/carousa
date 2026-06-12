@@ -369,6 +369,45 @@ describe("rankCandidates", () => {
     assert.equal(ranked[0]?.candidate.id, "newer-affordable");
   });
 
+  it("uses family-space priority to favor larger practical cars", () => {
+    const ranked = rankCandidates(
+      [
+        { ...baseCandidate, id: "city", model: "Sandero", bodyStyle: "hatchback", priceMad: 120000 },
+        { ...baseCandidate, id: "family", model: "Duster", bodyStyle: "suv", seats: 5, priceMad: 150000 },
+      ],
+      parseMatchCriteria({
+        mode: "credit",
+        monthlyBudget: "6500",
+        priorities: "family_space",
+        trunkNeed: "high",
+        familySize: "4",
+      }),
+      2,
+    );
+
+    assert.equal(ranked[0]?.candidate.id, "family");
+    assert.ok(ranked[0]?.reasons.includes("Espace familial"));
+  });
+
+  it("uses easy-city-parking priority to favor smaller cars", () => {
+    const ranked = rankCandidates(
+      [
+        { ...baseCandidate, id: "small", model: "Sandero", bodyStyle: "hatchback", priceMad: 125000 },
+        { ...baseCandidate, id: "large", model: "Duster", bodyStyle: "suv", priceMad: 125000 },
+      ],
+      parseMatchCriteria({
+        mode: "credit",
+        monthlyBudget: "6500",
+        priorities: "easy_city_parking",
+        parkingNeed: "high",
+      }),
+      2,
+    );
+
+    assert.equal(ranked[0]?.candidate.id, "small");
+    assert.ok(ranked[0]?.reasons.includes("Facile en ville"));
+  });
+
   it("diversifies ranked results by model family before filling the limit", () => {
     const ranked = rankCandidates(
       [

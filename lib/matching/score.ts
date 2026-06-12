@@ -434,6 +434,69 @@ function seatScore(candidate: CatalogCandidate, seats: MatchSeats) {
   return { points: -220, reason: null };
 }
 
+function priorityScore(
+  candidate: CatalogCandidate,
+  estimate: MonthlyEstimate,
+  inferredFuel: Exclude<MatchFuel, "any">,
+  criteria: MatchCriteria,
+) {
+  let points = 0;
+  const reasons: string[] = [];
+  const age = vehicleAge(candidate);
+  const practicalBody = ["suv", "wagon", "van", "crossover"].includes(candidate.bodyStyle);
+  const compactBody = ["hatchback", "sedan"].includes(candidate.bodyStyle);
+
+  for (const priority of criteria.priorities) {
+    if (priority === "lowest_monthly") {
+      points += Math.max(0, 220 - estimate.totalMad / 35);
+      reasons.push("Mensuel bas");
+    }
+    if (priority === "reliability") {
+      const reliabilityPoints = isNewCandidate(candidate) ? 140 : age !== null && age <= 10 ? 95 : 30;
+      points += reliabilityPoints;
+      reasons.push("Risque limite");
+    }
+    if (priority === "cheap_maintenance") {
+      points += candidate.priceMad < 180000 ? 120 : candidate.priceMad < 300000 ? 70 : 15;
+      reasons.push("Entretien accessible");
+    }
+    if (priority === "fuel_economy") {
+      points += inferredFuel === "hybrid" || inferredFuel === "diesel" || inferredFuel === "electric" ? 120 : 45;
+      reasons.push("Consommation maitrisee");
+    }
+    if (priority === "family_space") {
+      points += practicalBody ? 160 : compactBody ? 35 : 80;
+      if (candidate.seats && candidate.seats >= 5) points += 60;
+      reasons.push("Espace familial");
+    }
+    if (priority === "long_distance_comfort") {
+      points += practicalBody || candidate.bodyStyle === "sedan" ? 120 : 35;
+      reasons.push("Confort route");
+    }
+    if (priority === "safety") {
+      points += isNewCandidate(candidate) || (age !== null && age <= 8) ? 110 : 35;
+      reasons.push("Securite");
+    }
+    if (priority === "resale_value") {
+      points += ["Dacia", "Renault", "Toyota", "Hyundai", "Kia", "Volkswagen"].includes(candidate.brand) ? 120 : 45;
+      reasons.push("Revente facile");
+    }
+    if (priority === "premium_feel") {
+      points += ["BMW", "Mercedes-Benz", "Audi", "Lexus", "Volvo"].includes(candidate.brand) ? 180 : candidate.priceMad > 300000 ? 80 : 10;
+      reasons.push("Image premium");
+    }
+    if (priority === "easy_city_parking") {
+      points += compactBody ? 150 : candidate.bodyStyle === "suv" ? 25 : 70;
+      reasons.push("Facile en ville");
+    }
+  }
+
+  if (criteria.trunkNeed === "high" && practicalBody) points += 80;
+  if (criteria.parkingNeed === "high" && compactBody) points += 80;
+
+  return { points, reasons };
+}
+
 export function rankCandidates(
   candidates: CatalogCandidate[],
   criteria: MatchCriteria,
@@ -488,6 +551,10 @@ export function rankCandidates(
       const age = ageScore(candidate);
       score += age.points;
       if (age.reason) reasons.push(age.reason);
+
+      const priorities = priorityScore(candidate, estimate, inferredFuel, criteria);
+      score += priorities.points;
+      reasons.push(...priorities.reasons);
 
       if (criteria.condition === "new" && isNewCandidate(candidate)) {
         score += 80;
