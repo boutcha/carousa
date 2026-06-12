@@ -75,8 +75,7 @@ export function ResultsWorkbench({
   const activeModeLabel = optionLabel(labels.modes, criteria.mode)
   const budgetValue =
     criteria.mode === "cash"
-      ? formatBudget(criteria.cashBudgetMad, locale, currencyUnit) ??
-        formatBudget(criteria.monthlyBudgetMad, locale, currencyUnit)
+      ? formatBudget(criteria.cashBudgetMad, locale, currencyUnit)
       : formatBudget(criteria.monthlyBudgetMad, locale, currencyUnit) ??
         formatBudget(criteria.cashBudgetMad, locale, currencyUnit)
   const budgetLabel =

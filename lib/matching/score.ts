@@ -29,6 +29,25 @@ export type MatchPriority =
   | "resale_value"
   | "premium_feel"
   | "easy_city_parking";
+export type MatchReason =
+  | "budget_fit"
+  | "recent_year"
+  | "family_format_likely"
+  | "low_monthly"
+  | "lower_risk"
+  | "cheap_maintenance"
+  | "fuel_economy"
+  | "family_space"
+  | "long_distance_comfort"
+  | "safety"
+  | "resale_value"
+  | "premium_feel"
+  | "easy_city_parking"
+  | "new_market"
+  | "source_price"
+  | `body:${BodyStyle}`
+  | `fuel:${Exclude<MatchFuel, "any">}`
+  | `seats:${Exclude<MatchSeats, "any">}_plus`;
 
 export type MatchCriteria = {
   mode: BuyingMode;
@@ -80,7 +99,7 @@ export type RankedCandidate = {
   candidate: CatalogCandidate;
   estimate: MonthlyEstimate;
   score: number;
-  reasons: string[];
+  reasons: MatchReason[];
   inferredFuel: Exclude<MatchFuel, "any">;
 };
 
@@ -353,8 +372,8 @@ function ageScore(candidate: CatalogCandidate) {
 
   const age = vehicleAge(candidate);
   if (age === null) return { points: -40, reason: null };
-  if (age <= 6) return { points: 120, reason: "Millésime récent" };
-  if (age <= 10) return { points: 90, reason: "Millésime récent" };
+  if (age <= 6) return { points: 120, reason: "recent_year" as const };
+  if (age <= 10) return { points: 90, reason: "recent_year" as const };
   if (age <= 14) return { points: 45, reason: null };
   if (age <= 18) return { points: -60, reason: null };
   if (age <= 22) return { points: -180, reason: null };
@@ -401,33 +420,20 @@ function matchesExplicitFilters(candidate: CatalogCandidate, criteria: MatchCrit
   return true;
 }
 
-function bodyLabel(body: BodyStyle) {
-  if (body === "suv") return "SUV";
-  if (body === "hatchback") return "Citadine";
-  if (body === "sedan") return "Berline";
-  if (body === "van") return "Familiale";
-  if (body === "pickup") return "Pick-up";
-  return body.charAt(0).toUpperCase() + body.slice(1);
-}
-
-function fuelLabel(fuel: Exclude<MatchFuel, "any">) {
-  if (fuel === "diesel") return "Diesel";
-  if (fuel === "gasoline") return "Essence";
-  if (fuel === "hybrid") return "Hybride";
-  return "Electrique";
-}
-
 function seatScore(candidate: CatalogCandidate, seats: MatchSeats) {
   if (seats === "any") return { points: 0, reason: null };
   const wanted = Number.parseInt(seats, 10);
   const actual = candidate.seats;
 
   if (actual && actual >= wanted) {
-    return { points: wanted >= 7 ? 180 : 120, reason: `${wanted}+ places` };
+    return {
+      points: wanted >= 7 ? 180 : 120,
+      reason: `seats:${seats}_plus` as MatchReason,
+    };
   }
 
   if (!actual && wanted <= 5 && ["hatchback", "sedan", "suv", "crossover", "wagon"].includes(candidate.bodyStyle)) {
-    return { points: 45, reason: "Format familial probable" };
+    return { points: 45, reason: "family_format_likely" as const };
   }
 
   if (!actual) return { points: 0, reason: null };
@@ -441,7 +447,7 @@ function priorityScore(
   criteria: MatchCriteria,
 ) {
   let points = 0;
-  const reasons: string[] = [];
+  const reasons: MatchReason[] = [];
   const age = vehicleAge(candidate);
   const practicalBody = ["suv", "wagon", "van", "crossover"].includes(candidate.bodyStyle);
   const compactBody = ["hatchback", "sedan"].includes(candidate.bodyStyle);
@@ -449,45 +455,45 @@ function priorityScore(
   for (const priority of criteria.priorities) {
     if (priority === "lowest_monthly") {
       points += Math.max(0, 220 - estimate.totalMad / 35);
-      reasons.push("Mensuel bas");
+      reasons.push("low_monthly");
     }
     if (priority === "reliability") {
       const reliabilityPoints = isNewCandidate(candidate) ? 140 : age !== null && age <= 10 ? 95 : 30;
       points += reliabilityPoints;
-      reasons.push("Risque limite");
+      reasons.push("lower_risk");
     }
     if (priority === "cheap_maintenance") {
       points += candidate.priceMad < 180000 ? 120 : candidate.priceMad < 300000 ? 70 : 15;
-      reasons.push("Entretien accessible");
+      reasons.push("cheap_maintenance");
     }
     if (priority === "fuel_economy") {
       points += inferredFuel === "hybrid" || inferredFuel === "diesel" || inferredFuel === "electric" ? 120 : 45;
-      reasons.push("Consommation maitrisee");
+      reasons.push("fuel_economy");
     }
     if (priority === "family_space") {
       points += practicalBody ? 160 : compactBody ? 35 : 80;
       if (candidate.seats && candidate.seats >= 5) points += 60;
-      reasons.push("Espace familial");
+      reasons.push("family_space");
     }
     if (priority === "long_distance_comfort") {
       points += practicalBody || candidate.bodyStyle === "sedan" ? 120 : 35;
-      reasons.push("Confort route");
+      reasons.push("long_distance_comfort");
     }
     if (priority === "safety") {
       points += isNewCandidate(candidate) || (age !== null && age <= 8) ? 110 : 35;
-      reasons.push("Securite");
+      reasons.push("safety");
     }
     if (priority === "resale_value") {
       points += ["Dacia", "Renault", "Toyota", "Hyundai", "Kia", "Volkswagen"].includes(candidate.brand) ? 120 : 45;
-      reasons.push("Revente facile");
+      reasons.push("resale_value");
     }
     if (priority === "premium_feel") {
       points += ["BMW", "Mercedes-Benz", "Audi", "Lexus", "Volvo"].includes(candidate.brand) ? 180 : candidate.priceMad > 300000 ? 80 : 10;
-      reasons.push("Image premium");
+      reasons.push("premium_feel");
     }
     if (priority === "easy_city_parking") {
       points += compactBody ? 150 : candidate.bodyStyle === "suv" ? 25 : 70;
-      reasons.push("Facile en ville");
+      reasons.push("easy_city_parking");
     }
   }
 
@@ -511,24 +517,22 @@ export function rankCandidates(
     .map((candidate) => {
       const estimate = estimateMonthlyCost(candidate, criteria);
       const inferredFuel = inferFuel(candidate);
-      const reasons: string[] = [];
+      const reasons: MatchReason[] = [];
       let score = 0;
 
-      if (criteria.mode === "cash" && criteria.cashBudgetMad) {
-        const budgetDelta = criteria.cashBudgetMad - candidate.priceMad;
-        if (candidate.priceMad > criteria.cashBudgetMad * 1.08) return null;
-        if (budgetDelta >= 0) {
+      if (criteria.mode === "cash") {
+        if (criteria.cashBudgetMad) {
+          const budgetDelta = criteria.cashBudgetMad - candidate.priceMad;
+          if (budgetDelta < 0) return null;
           score += 300 + Math.min(180, (budgetDelta / criteria.cashBudgetMad) * 180);
-          reasons.push("Budget respecte");
-        } else {
-          score -= Math.abs(budgetDelta) / 4;
+          reasons.push("budget_fit");
         }
       } else if (criteria.budgetMad) {
         const budgetDelta = criteria.budgetMad - estimate.totalMad;
         if (estimate.totalMad > criteria.budgetMad * 1.08) return null;
         if (budgetDelta >= 0) {
           score += 300 + Math.min(180, (budgetDelta / criteria.budgetMad) * 180);
-          reasons.push("Budget respecte");
+          reasons.push("budget_fit");
         } else {
           score -= Math.abs(budgetDelta) / 4;
         }
@@ -536,12 +540,12 @@ export function rankCandidates(
 
       if (criteria.body !== "any" && candidate.bodyStyle === criteria.body) {
         score += 250;
-        reasons.push(bodyLabel(candidate.bodyStyle));
+        reasons.push(`body:${candidate.bodyStyle}`);
       }
 
       if (criteria.fuel !== "any" && inferredFuel === criteria.fuel) {
         score += 160;
-        reasons.push(fuelLabel(inferredFuel));
+        reasons.push(`fuel:${inferredFuel}`);
       }
 
       const seats = seatScore(candidate, criteria.seats);
@@ -558,7 +562,7 @@ export function rankCandidates(
 
       if (criteria.condition === "new" && isNewCandidate(candidate)) {
         score += 80;
-        reasons.push("Neuve Maroc");
+        reasons.push("new_market");
       }
 
       score += Math.min(candidate.sourceNames.length * 25, 75);
@@ -568,7 +572,7 @@ export function rankCandidates(
         candidate,
         estimate,
         inferredFuel,
-        reasons: reasons.length ? reasons : ["Prix source"],
+        reasons: reasons.length ? reasons : ["source_price"],
         score,
       };
     })

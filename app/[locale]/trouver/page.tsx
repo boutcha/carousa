@@ -18,6 +18,7 @@ import {
   parseMatchCriteria,
   rankCandidates,
   type MatchCriteria,
+  type MatchReason,
   type RankedCandidate,
 } from "@/lib/matching/score"
 import { cn } from "@/lib/utils"
@@ -71,9 +72,9 @@ export default async function TrouverPage({
             </p>
 
             <div className="mt-7 grid max-w-xl grid-cols-3 border border-signal/15 bg-bitume/70">
-              <MetricPlate icon={<SlidersHorizontal size={17} />} value="6" label="coûts" />
-              <MetricPlate icon={<Database size={17} />} value="2k+" label="versions" />
-              <MetricPlate icon={<Gauge size={17} />} value="60s" label="tri" />
+              <MetricPlate icon={<SlidersHorizontal size={17} />} {...t.metrics[0]} />
+              <MetricPlate icon={<Database size={17} />} {...t.metrics[1]} />
+              <MetricPlate icon={<Gauge size={17} />} {...t.metrics[2]} />
             </div>
           </div>
 
@@ -176,7 +177,7 @@ export default async function TrouverPage({
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-jaune">
-                  {hasCriteria ? "PK 2 — Matching" : "PK 2 — Catalogue"}
+                  {hasCriteria ? t.resultKickerMatching : t.resultKickerCatalog}
                 </p>
                 <h2 className="mt-2 font-display text-4xl font-bold uppercase text-signal sm:text-5xl">
                   {hasCriteria ? t.resultsTitle : t.starterTitle}
@@ -272,7 +273,7 @@ function SegmentGroup({
               defaultChecked={selected === option.value}
               className="peer sr-only"
             />
-            <span className="flex min-h-11 min-w-0 items-center justify-center border border-signal/15 px-1.5 text-center font-mono text-[10px] font-bold uppercase leading-tight tracking-[0.04em] text-signal/65 transition-colors peer-checked:border-jaune peer-checked:bg-jaune peer-checked:text-asphalte sm:min-h-10 sm:px-2 sm:text-[11px]">
+            <span className="flex min-h-11 min-w-0 items-center justify-center border border-signal/15 px-1.5 text-center font-mono text-[10px] font-bold uppercase leading-tight tracking-[0.04em] text-signal/65 transition-colors peer-checked:border-jaune peer-checked:bg-jaune peer-checked:text-asphalte peer-focus-visible:border-jaune peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-jaune sm:min-h-10 sm:px-2 sm:text-[11px]">
               {option.label}
             </span>
           </label>
@@ -404,7 +405,7 @@ function MatchCard({
               key={reason}
               className="border border-vert-light/35 bg-vert-light/10 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-vert-light"
             >
-              {reason}
+              {reasonLabel(reason, labels)}
             </span>
           ))}
           {criteria.fuel === "any" && (
@@ -461,6 +462,23 @@ function StateMessage({ title, body }: { title: string; body: string }) {
 function inputValue(value: string | string[] | undefined) {
   const raw = Array.isArray(value) ? value[0] : value
   return raw?.replace(/[^\d ]/g, "").trim() ?? ""
+}
+
+function reasonLabel(
+  reason: MatchReason,
+  labels: Awaited<ReturnType<typeof getDictionary>>["matching"],
+) {
+  if (reason.startsWith("body:")) {
+    const body = reason.slice("body:".length)
+    return labels.bodyOptions.find((option) => option.value === body)?.label ?? body
+  }
+
+  if (reason.startsWith("fuel:")) {
+    const fuel = reason.slice("fuel:".length)
+    return labels.fuelOptions.find((option) => option.value === fuel)?.label ?? fuel
+  }
+
+  return (labels.reasonLabels as Record<string, string>)[reason] ?? reason
 }
 
 function workbenchCriteriaKey(criteria: MatchCriteria) {

@@ -228,6 +228,7 @@ describe("rankCandidates", () => {
     const ranked = rankCandidates(
       [
         { ...baseCandidate, id: "affordable", priceMad: 170000 },
+        { ...baseCandidate, id: "slightly-over", priceMad: 180001 },
         {
           ...baseCandidate,
           id: "luxury",
@@ -243,6 +244,25 @@ describe("rankCandidates", () => {
     assert.deepEqual(
       ranked.map((match) => match.candidate.id),
       ["affordable"],
+    );
+  });
+
+  it("does not use a monthly budget fallback for cash mode", () => {
+    const ranked = rankCandidates(
+      [
+        { ...baseCandidate, id: "lower-price", priceMad: 120000 },
+        { ...baseCandidate, id: "higher-price", priceMad: 220000 },
+      ],
+      parseMatchCriteria({
+        mode: "cash",
+        monthlyBudget: "1000",
+      }),
+      2,
+    );
+
+    assert.deepEqual(
+      ranked.map((match) => match.candidate.id),
+      ["lower-price", "higher-price"],
     );
   });
 
@@ -283,8 +303,8 @@ describe("rankCandidates", () => {
 
     assert.equal(ranked[0]?.candidate.id, "suv");
     assert.equal(ranked.some((match) => match.candidate.id === "luxury"), false);
-    assert.ok(ranked[0]?.reasons.includes("SUV"));
-    assert.ok(ranked[0]?.reasons.includes("Diesel"));
+    assert.ok(ranked[0]?.reasons.includes("body:suv"));
+    assert.ok(ranked[0]?.reasons.includes("fuel:diesel"));
   });
 
   it("treats explicit body and fuel choices as hard filters", () => {
@@ -386,7 +406,7 @@ describe("rankCandidates", () => {
     );
 
     assert.equal(ranked[0]?.candidate.id, "family");
-    assert.ok(ranked[0]?.reasons.includes("Espace familial"));
+    assert.ok(ranked[0]?.reasons.includes("family_space"));
   });
 
   it("uses easy-city-parking priority to favor smaller cars", () => {
@@ -405,7 +425,7 @@ describe("rankCandidates", () => {
     );
 
     assert.equal(ranked[0]?.candidate.id, "small");
-    assert.ok(ranked[0]?.reasons.includes("Facile en ville"));
+    assert.ok(ranked[0]?.reasons.includes("easy_city_parking"));
   });
 
   it("diversifies ranked results by model family before filling the limit", () => {

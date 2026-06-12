@@ -179,7 +179,7 @@ function RadioCards({
               defaultChecked={selected === option.value}
               className="peer sr-only"
             />
-            <span className="flex min-h-16 min-w-0 flex-col justify-center border border-signal/15 px-3 py-2 text-signal/70 transition-colors peer-checked:border-jaune peer-checked:bg-jaune peer-checked:text-asphalte">
+            <span className="flex min-h-16 min-w-0 flex-col justify-center border border-signal/15 px-3 py-2 text-signal/70 transition-colors peer-checked:border-jaune peer-checked:bg-jaune peer-checked:text-asphalte peer-focus-visible:border-jaune peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-jaune">
               <span className="font-display text-base font-bold uppercase tracking-wider">
                 {option.label}
               </span>
