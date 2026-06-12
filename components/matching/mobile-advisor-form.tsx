@@ -24,10 +24,12 @@ export function MobileAdvisorForm({
   locale,
   labels,
   criteria,
+  currencyUnit,
 }: {
   locale: Locale
   labels: MatchingLabels
   criteria: MatchCriteria
+  currencyUnit: string
 }) {
   const [step, setStep] = useState(0)
   const [selectedPriorities, setSelectedPriorities] = useState<string[]>(
@@ -69,9 +71,24 @@ export function MobileAdvisorForm({
         </section>
 
         <section className={cn("grid gap-3", step !== 1 && "hidden")} aria-hidden={step !== 1}>
-          <MoneyField name="cashBudget" label={labels.scenario.cashBudget} defaultValue={criteria.cashBudgetMad} />
-          <MoneyField name="monthlyBudget" label={labels.scenario.monthlyBudget} defaultValue={criteria.monthlyBudgetMad} />
-          <MoneyField name="downPayment" label={labels.scenario.downPayment} defaultValue={criteria.downPaymentMad || null} />
+          <MoneyField
+            name="cashBudget"
+            label={labels.scenario.cashBudget}
+            defaultValue={criteria.cashBudgetMad}
+            currencyUnit={currencyUnit}
+          />
+          <MoneyField
+            name="monthlyBudget"
+            label={labels.scenario.monthlyBudget}
+            defaultValue={criteria.monthlyBudgetMad}
+            currencyUnit={currencyUnit}
+          />
+          <MoneyField
+            name="downPayment"
+            label={labels.scenario.downPayment}
+            defaultValue={criteria.downPaymentMad || null}
+            currencyUnit={currencyUnit}
+          />
           <SelectField name="durationMonths" label={labels.scenario.duration} selected={String(criteria.durationMonths)} options={[
             { value: "48", label: "48m" },
             { value: "60", label: "60m" },
@@ -200,10 +217,12 @@ function MoneyField({
   name,
   label,
   defaultValue,
+  currencyUnit,
 }: {
   name: string
   label: string
   defaultValue: number | null
+  currencyUnit: string
 }) {
   return (
     <label className="block">
@@ -220,7 +239,7 @@ function MoneyField({
         />
         <span className="my-2 w-[2px] bg-asphalte/80" aria-hidden="true" />
         <span className="flex items-center px-3 font-mono text-[11px] font-bold uppercase text-asphalte">
-          MAD
+          {currencyUnit}
         </span>
       </span>
     </label>

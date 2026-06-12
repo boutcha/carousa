@@ -257,6 +257,7 @@
     "priceLabel": "Prix source",
     "monthlyLabel": "Vrai coût / mois",
     "sourceLabel": "Sources",
+    "sourceFallback": "Catalogue",
     "whyLabel": "Pourquoi",
     "fuelInferred": "Carburant lu depuis la version",
     "emptyTitle": "Aucun match net avec ces critères",

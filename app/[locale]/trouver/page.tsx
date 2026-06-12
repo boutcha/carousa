@@ -79,7 +79,12 @@ export default async function TrouverPage({
           </div>
 
           <div className="lg:hidden">
-            <MobileAdvisorForm locale={locale} labels={t} criteria={criteria} />
+            <MobileAdvisorForm
+              locale={locale}
+              labels={t}
+              criteria={criteria}
+              currencyUnit={dict.selection.priceUnit}
+            />
           </div>
 
           <form
@@ -441,7 +446,7 @@ function MatchCard({
             {labels.sourceLabel}
           </p>
           <p className="mt-1 truncate font-mono text-[11px] text-signal/70">
-            {candidate.sourceNames.join(" · ") || "Catalogue"}
+            {candidate.sourceNames.join(" · ") || labels.sourceFallback}
           </p>
         </div>
         <ArrowRight className="shrink-0 text-jaune" size={24} aria-hidden="true" />

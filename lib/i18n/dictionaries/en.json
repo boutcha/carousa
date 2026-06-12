@@ -257,6 +257,7 @@
     "priceLabel": "Source price",
     "monthlyLabel": "True cost / month",
     "sourceLabel": "Sources",
+    "sourceFallback": "Catalog",
     "whyLabel": "Why",
     "fuelInferred": "Fuel read from the version name",
     "emptyTitle": "No clear match with these criteria",

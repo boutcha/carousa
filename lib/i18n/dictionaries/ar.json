@@ -257,6 +257,7 @@
     "priceLabel": "الثمن المصدري",
     "monthlyLabel": "التكلفة الحقيقية / شهر",
     "sourceLabel": "المصادر",
+    "sourceFallback": "الكتالوج",
     "whyLabel": "لماذا",
     "fuelInferred": "تمت قراءة الوقود من اسم النسخة",
     "emptyTitle": "لا يوجد اختيار واضح بهذه المعايير",
