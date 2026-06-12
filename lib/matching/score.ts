@@ -217,6 +217,41 @@ function vehicleAge(candidate: CatalogCandidate) {
   return Math.max(0, catalogSnapshotYear - candidate.modelYear);
 }
 
+function amortizedMonthlyPayment(principal: number, annualRate: number, months: number) {
+  if (principal <= 0) return 0;
+  const monthlyRate = annualRate / 12;
+  if (monthlyRate === 0) return Math.round(principal / months);
+
+  return Math.round(
+    (principal * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -months)),
+  );
+}
+
+function estimateFinancingMonthly(candidate: CatalogCandidate, criteria: MatchCriteria) {
+  const principal = Math.max(candidate.priceMad - criteria.downPaymentMad, 0);
+
+  if (criteria.mode === "cash") return 0;
+  if (criteria.mode === "mourabaha") {
+    const margin = isNewCandidate(candidate) ? 0.16 : 0.2;
+    return Math.round((principal * (1 + margin)) / criteria.durationMonths);
+  }
+  if (criteria.mode === "unsure") {
+    const credit = amortizedMonthlyPayment(
+      principal,
+      isNewCandidate(candidate) ? 0.082 : 0.095,
+      criteria.durationMonths,
+    );
+    const mourabaha = Math.round((principal * 1.18) / criteria.durationMonths);
+    return Math.min(credit, mourabaha);
+  }
+
+  return amortizedMonthlyPayment(
+    principal,
+    isNewCandidate(candidate) ? 0.082 : 0.095,
+    criteria.durationMonths,
+  );
+}
+
 export function inferFuel(candidate: CatalogCandidate): Exclude<MatchFuel, "any"> {
   const label = `${candidate.commercialName} ${candidate.trimName}`.toLowerCase();
 
@@ -235,10 +270,7 @@ export function estimateMonthlyCost(
   const fiscalHp = candidate.fiscalHp ?? 6;
   const fuel = inferFuel(candidate);
   const isNew = isNewCandidate(candidate);
-  const financedShare = isNew ? 0.7 : 0.65;
-  const financeFactor = isNew ? 1.1856 : 1.22;
-  const financeMonths = isNew ? 60 : 48;
-  const financingMad = Math.round((price * financedShare * financeFactor) / financeMonths);
+  const financingMad = estimateFinancingMonthly(candidate, criteria);
   const insuranceMad = Math.round(210 + fiscalHp * 20 + Math.max(price - 260000, 0) * 0.00032);
   const fuelMad = estimateFuelMonthly(candidate, criteria, fuel);
   const maintenanceMad = estimateMaintenanceMonthly(candidate);

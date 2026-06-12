@@ -123,31 +123,107 @@ describe("parseMatchCriteria", () => {
 
 describe("estimateMonthlyCost", () => {
   it("breaks a Moroccan new-car price into monthly ownership buckets", () => {
-    const estimate = estimateMonthlyCost(baseCandidate, {
-      ...baseCriteria,
-      budgetMad: 5000,
-      usage: "mixed",
-      seats: "any",
-      minSeats: "any",
-      body: "any",
-      fuel: "any",
-      annualKm: 15000,
-      condition: "all",
-    });
+    const estimate = estimateMonthlyCost(
+      { ...baseCandidate, commercialName: "1.0 TCe 90" },
+      {
+        ...parseMatchCriteria({ mode: "credit", monthlyBudget: "5000", usage: "mixed" }),
+        annualKm: 15000,
+      },
+    );
 
     assert.deepEqual(estimate, {
-      financingMad: 2350,
+      financingMad: 3461,
       insuranceMad: 330,
-      fuelMad: 735,
+      fuelMad: 1188,
       maintenanceMad: 250,
       feesMad: 75,
       depreciationMad: 1133,
-      totalMad: 4873,
+      totalMad: 6437,
     });
+  });
+
+  it("does not add financing payment for cash mode", () => {
+    const estimate = estimateMonthlyCost(baseCandidate, {
+      ...parseMatchCriteria({ mode: "cash", cashBudget: "180000" }),
+      annualKm: 15000,
+    });
+
+    assert.equal(estimate.financingMad, 0);
+    assert.ok(estimate.totalMad < 3000);
+  });
+
+  it("uses down payment and duration for credit mode", () => {
+    const shorter = estimateMonthlyCost(baseCandidate, {
+      ...parseMatchCriteria({
+        mode: "credit",
+        monthlyBudget: "6500",
+        downPayment: "40000",
+        durationMonths: "48",
+      }),
+      annualKm: 15000,
+    });
+    const longer = estimateMonthlyCost(baseCandidate, {
+      ...parseMatchCriteria({
+        mode: "credit",
+        monthlyBudget: "6500",
+        downPayment: "40000",
+        durationMonths: "72",
+      }),
+      annualKm: 15000,
+    });
+
+    assert.ok(shorter.financingMad > longer.financingMad);
+    assert.ok(longer.financingMad > 0);
+  });
+
+  it("uses a margin model for mourabaha mode", () => {
+    const estimate = estimateMonthlyCost(baseCandidate, {
+      ...parseMatchCriteria({
+        mode: "mourabaha",
+        monthlyBudget: "6500",
+        downPayment: "40000",
+        durationMonths: "60",
+      }),
+      annualKm: 15000,
+    });
+
+    assert.ok(estimate.financingMad > 0);
+    assert.ok(estimate.totalMad > estimate.financingMad);
   });
 });
 
 describe("rankCandidates", () => {
+  it("keeps new, used, and import candidates available by default", () => {
+    const ranked = rankCandidates(
+      [
+        { ...baseCandidate, id: "new", availabilityScope: "new_ma", priceMad: 170000 },
+        {
+          ...baseCandidate,
+          id: "used",
+          availabilityScope: "used_ma",
+          marketOrigin: "morocco_official",
+          modelYear: 2018,
+          priceMad: 105000,
+        },
+        {
+          ...baseCandidate,
+          id: "import",
+          availabilityScope: "imported_edge_case",
+          marketOrigin: "morocco_used_import",
+          modelYear: 2016,
+          priceMad: 95000,
+        },
+      ],
+      parseMatchCriteria({ mode: "credit", monthlyBudget: "6500" }),
+      3,
+    );
+
+    assert.deepEqual(
+      ranked.map((match) => match.candidate.id).sort(),
+      ["import", "new", "used"],
+    );
+  });
+
   it("prefers a criteria match over a cheaper poor-fit car and drops far over-budget cars", () => {
     const ranked = rankCandidates(
       [
