@@ -15,6 +15,7 @@ type MatchingLabels = {
   needLevels: Option[]
   priorityOptions: Option[]
   usageOptions: Option[]
+  annualKmLabel: string
   annualKmOptions: Option[]
   seatOptions: Option[]
 }
@@ -81,7 +82,7 @@ export function MobileAdvisorForm({
 
         <section className={cn("grid gap-3", step !== 2 && "hidden")} aria-hidden={step !== 2}>
           <RadioCards name="usage" selected={criteria.usage} options={labels.usageOptions} columns="grid-cols-3" />
-          <SelectField name="annualKm" label="km/an" selected={String(criteria.annualKm)} options={labels.annualKmOptions} />
+          <SelectField name="annualKm" label={labels.annualKmLabel} selected={String(criteria.annualKm)} options={labels.annualKmOptions} />
         </section>
 
         <section className={cn("grid gap-3", step !== 3 && "hidden")} aria-hidden={step !== 3}>
