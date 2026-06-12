@@ -315,6 +315,12 @@
       "newMarket": "New",
       "usedMarket": "Used / import"
     },
+    "durationOptions": [
+      { "value": "48", "label": "48 months" },
+      { "value": "60", "label": "60 months" },
+      { "value": "72", "label": "72 months" },
+      { "value": "84", "label": "84 months" }
+    ],
     "needLevels": [
       { "value": "low", "label": "Low" },
       { "value": "medium", "label": "Medium" },

@@ -33,19 +33,13 @@ type MatchingLabels = {
   usageOptions: Option[]
   annualKmLabel: string
   annualKmOptions: Option[]
+  durationOptions: Option[]
   seatsLabel: string
   seatOptions: Option[]
   needLevels: Option[]
   priorityOptions: Option[]
   conditionOptions: Option[]
 }
-
-const durationOptions: Option[] = [
-  { value: "48", label: "48m" },
-  { value: "60", label: "60m" },
-  { value: "72", label: "72m" },
-  { value: "84", label: "84m" },
-]
 
 const familySizeOptions: Option[] = [
   { value: "", label: "-" },
@@ -192,7 +186,7 @@ export function ResultsWorkbench({
             name="durationMonths"
             label={labels.scenario.duration}
             selected={String(criteria.durationMonths)}
-            options={durationOptions}
+            options={labels.durationOptions}
           />
 
           <RadioGrid

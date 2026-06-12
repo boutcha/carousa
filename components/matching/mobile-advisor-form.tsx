@@ -12,6 +12,7 @@ type MatchingLabels = {
   advisor: Record<string, string>
   modes: Option[]
   scenario: Record<string, string>
+  durationOptions: Option[]
   needLevels: Option[]
   priorityOptions: Option[]
   usageOptions: Option[]
@@ -89,12 +90,12 @@ export function MobileAdvisorForm({
             defaultValue={criteria.downPaymentMad || null}
             currencyUnit={currencyUnit}
           />
-          <SelectField name="durationMonths" label={labels.scenario.duration} selected={String(criteria.durationMonths)} options={[
-            { value: "48", label: "48m" },
-            { value: "60", label: "60m" },
-            { value: "72", label: "72m" },
-            { value: "84", label: "84m" },
-          ]} />
+          <SelectField
+            name="durationMonths"
+            label={labels.scenario.duration}
+            selected={String(criteria.durationMonths)}
+            options={labels.durationOptions}
+          />
         </section>
 
         <section className={cn("grid gap-3", step !== 2 && "hidden")} aria-hidden={step !== 2}>
@@ -125,6 +126,7 @@ export function MobileAdvisorForm({
                 <button
                   key={option.value}
                   type="button"
+                  aria-pressed={active}
                   onClick={() => togglePriority(option.value)}
                   className={cn(
                     "min-h-12 border px-2 text-center font-mono text-[10px] font-bold uppercase tracking-[0.08em]",

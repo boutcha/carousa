@@ -315,6 +315,12 @@
       "newMarket": "جديد",
       "usedMarket": "مستعمل / مستورد"
     },
+    "durationOptions": [
+      { "value": "48", "label": "48 شهر" },
+      { "value": "60", "label": "60 شهر" },
+      { "value": "72", "label": "72 شهر" },
+      { "value": "84", "label": "84 شهر" }
+    ],
     "needLevels": [
       { "value": "low", "label": "ضعيف" },
       { "value": "medium", "label": "متوسط" },

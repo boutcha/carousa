@@ -3,6 +3,7 @@ import { describe, it } from "node:test";
 
 import {
   estimateMonthlyCost,
+  inferFuel,
   parseMatchCriteria,
   rankCandidates,
   type CatalogCandidate,
@@ -189,6 +190,16 @@ describe("estimateMonthlyCost", () => {
 
     assert.ok(estimate.financingMad > 0);
     assert.ok(estimate.totalMad > estimate.financingMad);
+  });
+
+  it("classifies E-Tech Electric cars as electric, not hybrid", () => {
+    const fuel = inferFuel({
+      ...baseCandidate,
+      commercialName: "E-Tech Electric 220",
+      trimName: "Iconic",
+    });
+
+    assert.equal(fuel, "electric");
   });
 });
 

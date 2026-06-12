@@ -274,8 +274,8 @@ function estimateFinancingMonthly(candidate: CatalogCandidate, criteria: MatchCr
 export function inferFuel(candidate: CatalogCandidate): Exclude<MatchFuel, "any"> {
   const label = `${candidate.commercialName} ${candidate.trimName}`.toLowerCase();
 
-  if (/(hybrid|hev|phev|e-tech|e tech)/.test(label)) return "hybrid";
   if (/(electric|electrique|\bev\b|\bkwh\b|\bkw\b)/.test(label)) return "electric";
+  if (/(hybrid|hev|phev|e-tech|e tech)/.test(label)) return "hybrid";
   if (/(dci|hdi|bluehdi|tdi|crdi|cdi|gasoil|diesel)/.test(label)) return "diesel";
 
   return "gasoline";
