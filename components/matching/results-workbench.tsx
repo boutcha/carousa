@@ -102,7 +102,7 @@ export function ResultsWorkbench({
 
   return (
     <div className="mt-8">
-      <div className="sticky top-0 z-20 -mx-4 border-y border-signal/12 bg-bitume/95 px-4 py-3 shadow-2xl shadow-black/20 backdrop-blur sm:-mx-6 sm:px-6 lg:static lg:mx-0 lg:rounded-none lg:border lg:bg-bitume/80">
+      <div className="sticky top-14 z-20 -mx-4 border-y border-signal/12 bg-bitume/95 px-4 py-3 shadow-2xl shadow-black/20 backdrop-blur sm:-mx-6 sm:top-16 sm:px-6 lg:static lg:mx-0 lg:rounded-none lg:border lg:bg-bitume/80">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div className="min-w-0">
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-jaune">
@@ -325,7 +325,7 @@ function RadioGrid({
               defaultChecked={selected === option.value}
               className="peer sr-only"
             />
-            <span className="flex min-h-11 min-w-0 items-center justify-center border border-signal/15 px-2 text-center font-mono text-[10px] font-bold uppercase leading-tight tracking-[0.06em] text-signal/65 transition-colors peer-checked:border-jaune peer-checked:bg-jaune peer-checked:text-asphalte">
+            <span className="flex min-h-11 min-w-0 items-center justify-center border border-signal/15 px-2 text-center font-mono text-[10px] font-bold uppercase leading-tight tracking-[0.06em] text-signal/65 transition-colors peer-checked:border-jaune peer-checked:bg-jaune peer-checked:text-asphalte peer-focus-visible:border-jaune peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-jaune">
               {option.label}
             </span>
           </label>

@@ -196,6 +196,7 @@ export default async function TrouverPage({
               <StateMessage title={t.emptyTitle} body={t.emptyBody} />
             ) : (
               <ResultsWorkbench
+                key={workbenchCriteriaKey(criteria)}
                 locale={locale}
                 labels={t}
                 criteria={criteria}
@@ -460,6 +461,28 @@ function StateMessage({ title, body }: { title: string; body: string }) {
 function inputValue(value: string | string[] | undefined) {
   const raw = Array.isArray(value) ? value[0] : value
   return raw?.replace(/[^\d ]/g, "").trim() ?? ""
+}
+
+function workbenchCriteriaKey(criteria: MatchCriteria) {
+  return [
+    criteria.mode,
+    criteria.cashBudgetMad ?? "",
+    criteria.monthlyBudgetMad ?? "",
+    criteria.downPaymentMad,
+    criteria.durationMonths,
+    criteria.budgetMad ?? "",
+    criteria.usage,
+    criteria.seats,
+    criteria.minSeats,
+    criteria.body,
+    criteria.fuel,
+    criteria.annualKm,
+    criteria.familySize ?? "",
+    criteria.trunkNeed,
+    criteria.parkingNeed,
+    criteria.priorities.join(","),
+    criteria.condition,
+  ].join("|")
 }
 
 function formatMad(value: number, locale: Locale) {
