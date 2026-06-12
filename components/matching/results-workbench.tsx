@@ -60,11 +60,13 @@ export function ResultsWorkbench({
   locale,
   labels,
   criteria,
+  currencyUnit,
   children,
 }: {
   locale: Locale
   labels: MatchingLabels
   criteria: MatchCriteria
+  currencyUnit: string
   children: ReactNode
 }) {
   const [selectedPriorities, setSelectedPriorities] = useState<string[]>(
@@ -73,10 +75,10 @@ export function ResultsWorkbench({
   const activeModeLabel = optionLabel(labels.modes, criteria.mode)
   const budgetValue =
     criteria.mode === "cash"
-      ? formatBudget(criteria.cashBudgetMad, locale) ??
-        formatBudget(criteria.monthlyBudgetMad, locale)
-      : formatBudget(criteria.monthlyBudgetMad, locale) ??
-        formatBudget(criteria.cashBudgetMad, locale)
+      ? formatBudget(criteria.cashBudgetMad, locale, currencyUnit) ??
+        formatBudget(criteria.monthlyBudgetMad, locale, currencyUnit)
+      : formatBudget(criteria.monthlyBudgetMad, locale, currencyUnit) ??
+        formatBudget(criteria.cashBudgetMad, locale, currencyUnit)
   const budgetLabel =
     criteria.mode === "cash"
       ? labels.scenario.cashBudget
@@ -173,16 +175,19 @@ export function ResultsWorkbench({
             name="cashBudget"
             label={labels.scenario.cashBudget}
             defaultValue={criteria.cashBudgetMad}
+            currencyUnit={currencyUnit}
           />
           <MoneyField
             name="monthlyBudget"
             label={labels.scenario.monthlyBudget}
             defaultValue={criteria.monthlyBudgetMad}
+            currencyUnit={currencyUnit}
           />
           <MoneyField
             name="downPayment"
             label={labels.scenario.downPayment}
             defaultValue={criteria.downPaymentMad || null}
+            currencyUnit={currencyUnit}
           />
           <SelectField
             name="durationMonths"
@@ -334,10 +339,12 @@ function MoneyField({
   name,
   label,
   defaultValue,
+  currencyUnit,
 }: {
   name: string
   label: string
   defaultValue: number | null
+  currencyUnit: string
 }) {
   return (
     <label className="block">
@@ -354,7 +361,7 @@ function MoneyField({
         />
         <span className="my-2 w-[2px] bg-asphalte/80" aria-hidden="true" />
         <span className="flex items-center px-2 font-mono text-[10px] font-bold uppercase text-asphalte">
-          MAD
+          {currencyUnit}
         </span>
       </span>
     </label>
@@ -425,9 +432,9 @@ function optionLabel(options: Option[], value: string) {
   return options.find((option) => option.value === value)?.label ?? value
 }
 
-function formatBudget(value: number | null, locale: Locale) {
+function formatBudget(value: number | null, locale: Locale, currencyUnit: string) {
   if (value === null) return null
-  return `${formatMad(value, locale)} MAD`
+  return `${formatMad(value, locale)} ${currencyUnit}`
 }
 
 function formatMad(value: number, locale: Locale) {

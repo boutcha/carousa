@@ -195,7 +195,12 @@ export default async function TrouverPage({
             ) : matches.length === 0 ? (
               <StateMessage title={t.emptyTitle} body={t.emptyBody} />
             ) : (
-              <ResultsWorkbench locale={locale} labels={t} criteria={criteria}>
+              <ResultsWorkbench
+                locale={locale}
+                labels={t}
+                criteria={criteria}
+                currencyUnit={dict.selection.priceUnit}
+              >
                 {matches.map((match, index) => (
                   <MatchCard
                     key={match.candidate.id}
