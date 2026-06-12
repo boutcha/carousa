@@ -451,7 +451,16 @@ export function rankCandidates(
       const reasons: string[] = [];
       let score = 0;
 
-      if (criteria.budgetMad) {
+      if (criteria.mode === "cash" && criteria.cashBudgetMad) {
+        const budgetDelta = criteria.cashBudgetMad - candidate.priceMad;
+        if (candidate.priceMad > criteria.cashBudgetMad * 1.08) return null;
+        if (budgetDelta >= 0) {
+          score += 300 + Math.min(180, (budgetDelta / criteria.cashBudgetMad) * 180);
+          reasons.push("Budget respecte");
+        } else {
+          score -= Math.abs(budgetDelta) / 4;
+        }
+      } else if (criteria.budgetMad) {
         const budgetDelta = criteria.budgetMad - estimate.totalMad;
         if (estimate.totalMad > criteria.budgetMad * 1.08) return null;
         if (budgetDelta >= 0) {

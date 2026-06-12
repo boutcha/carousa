@@ -224,6 +224,28 @@ describe("rankCandidates", () => {
     );
   });
 
+  it("excludes cars materially above the cash budget", () => {
+    const ranked = rankCandidates(
+      [
+        { ...baseCandidate, id: "affordable", priceMad: 170000 },
+        {
+          ...baseCandidate,
+          id: "luxury",
+          brand: "BMW",
+          model: "X3",
+          bodyStyle: "suv",
+          priceMad: 650000,
+        },
+      ],
+      parseMatchCriteria({ mode: "cash", cashBudget: "180000" }),
+    );
+
+    assert.deepEqual(
+      ranked.map((match) => match.candidate.id),
+      ["affordable"],
+    );
+  });
+
   it("prefers a criteria match over a cheaper poor-fit car and drops far over-budget cars", () => {
     const ranked = rankCandidates(
       [
