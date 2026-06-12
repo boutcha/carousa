@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:seed:reliability": "tsx scripts/seed-reliability.ts --apply",
+    "db:seed:reliability:dry": "tsx scripts/seed-reliability.ts --dry-run"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
