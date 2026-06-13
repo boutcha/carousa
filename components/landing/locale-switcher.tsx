@@ -12,7 +12,7 @@ export function LocaleSwitcher({ current }: { current: Locale }) {
           href={`/${locale}`}
           aria-current={locale === current ? "page" : undefined}
           className={cn(
-            "border px-2 py-1 leading-none transition-colors",
+            "border px-2.5 py-2 leading-none transition-colors sm:px-2 sm:py-1",
             locale === current
               ? "border-signal bg-signal text-asphalte"
               : "border-signal/25 text-signal/60 hover:border-signal/60 hover:text-signal"

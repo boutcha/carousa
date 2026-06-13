@@ -6,7 +6,7 @@
   "header": {
     "how": "The selection",
     "costs": "The ledger",
-    "cta": "Compute my true cost"
+    "cta": "Find my car"
   },
   "hero": {
     "kicker": "PK 0 — CASABLANCA · DATA 06/2026",
@@ -18,7 +18,7 @@
     "budgetLabel": "Your monthly budget",
     "budgetPlaceholder": "3,500",
     "budgetUnit": "MAD/MO",
-    "cta": "Compute my true cost",
+    "cta": "Find my car",
     "ctaHint": "An honest estimate in 60 seconds. Free, no account."
   },
   "showcase": {
@@ -29,7 +29,9 @@
     "trueLabel": "True monthly cost",
     "monthly": "4,870",
     "monthlyUnit": "MAD/mo",
-    "dim": "4,099 mm"
+    "dim": "4,099 mm",
+    "sheet": "Spec sheet · N° 01",
+    "scale": "Scale 1:24"
   },
   "selection": {
     "kicker": "No. 01 — The selection",
@@ -42,6 +44,7 @@
     "priceUnit": "MAD",
     "trueLabel": "True monthly cost",
     "monthlyUnit": "MAD/mo",
+    "swipeHint": "Swipe to see all 3 options",
     "note": "All-in monthlies — financing, insurance, fuel, maintenance, depreciation. Dated estimates · 06/2026.",
     "cars": [
       {
@@ -178,7 +181,8 @@
     "totalLabel": "Total — the true cost",
     "total": "4 870",
     "totalUnit": "MAD/MO",
-    "footnote": "Example: new Dacia Sandero Stepway, Casablanca — 60-month loan, 30% down."
+    "footnote": "Example: new Dacia Sandero Stepway, Casablanca — 60-month loan, 30% down.",
+    "replay": "Replay"
   },
   "fourche": {
     "kicker": "No. 04 — The fork",

@@ -5,17 +5,18 @@ import { SectionHeading } from "./section-heading"
 /* Milestones as bornes kilométriques. Future ones are hatched: not promised yet. */
 export function RoadmapBornes({ dict }: { dict: Dictionary }) {
   return (
-    <section className="km-ruler border-t border-asphalte/10 bg-[#e9eae3] pb-24 pt-3 text-asphalte">
-      <div className="mx-auto max-w-6xl px-6 pt-20">
+    <section className="km-ruler border-t border-asphalte/10 bg-[#e9eae3] pb-16 pt-3 text-asphalte md:pb-24">
+      <div className="mx-auto max-w-6xl px-4 pt-14 sm:px-6 md:pt-20">
         <SectionHeading kicker={dict.roadmap.kicker} title={dict.roadmap.title} />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-2 gap-4 md:mt-12 md:gap-6 lg:grid-cols-4">
           {dict.roadmap.items.map((item) => {
             const now = item.status === "now"
             return (
               <div
                 key={item.title}
+                data-reveal
                 className={cn(
-                  "view-rise overflow-hidden rounded-t-[14px] rounded-b-[2px]",
+                  "overflow-hidden rounded-t-[14px] rounded-b-[2px]",
                   now
                     ? "border border-asphalte/25 bg-signal"
                     : "hatch-border bg-signal/55"
@@ -23,7 +24,7 @@ export function RoadmapBornes({ dict }: { dict: Dictionary }) {
               >
                 <div
                   className={cn(
-                    "flex h-9 items-center justify-center font-mono text-[11px] font-bold uppercase tracking-[0.18em]",
+                    "flex h-9 items-center justify-center font-mono text-[10px] font-bold uppercase tracking-[0.12em] sm:text-[11px] sm:tracking-[0.18em]",
                     now
                       ? "bg-rouge text-signal"
                       : "bg-asphalte/70 text-signal/90"
@@ -31,8 +32,8 @@ export function RoadmapBornes({ dict }: { dict: Dictionary }) {
                 >
                   {item.date}
                 </div>
-                <div className="p-5">
-                  <h3 className="font-display text-lg font-bold uppercase leading-snug tracking-tight rtl:tracking-normal">
+                <div className="p-4 sm:p-5">
+                  <h3 className="font-display text-base font-bold uppercase leading-snug tracking-tight sm:text-lg rtl:tracking-normal">
                     {item.title}
                   </h3>
                   {now && (

@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1781267417966,
+      "tag": "0000_initial_vehicle_intelligence",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1781278162994,
+      "tag": "0001_catalog_source_records",
+      "breakpoints": true
+    }
+  ]
+}

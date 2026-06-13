@@ -4,11 +4,11 @@ import { SiteHeader } from "@/components/landing/site-header"
 import { Hero } from "@/components/landing/hero"
 import { TrustStrip } from "@/components/landing/trust-strip"
 import { Selection } from "@/components/landing/selection"
-import { Roadbook } from "@/components/landing/roadbook"
 import { GrandLivre } from "@/components/landing/grand-livre"
 import { Fourche } from "@/components/landing/fourche"
-import { RoadmapBornes } from "@/components/landing/roadmap-bornes"
 import { SiteFooter } from "@/components/landing/site-footer"
+import { MobileCta } from "@/components/landing/mobile-cta"
+import { ScrollReveals } from "@/components/landing/scroll-reveals"
 
 export default async function LandingPage({
   params,
@@ -25,12 +25,12 @@ export default async function LandingPage({
         <Hero dict={dict} locale={locale} />
         <TrustStrip dict={dict} />
         <Selection dict={dict} />
-        <Roadbook dict={dict} />
         <GrandLivre dict={dict} />
         <Fourche dict={dict} />
-        <RoadmapBornes dict={dict} />
       </main>
       <SiteFooter dict={dict} locale={locale} />
+      <MobileCta dict={dict} locale={locale} />
+      <ScrollReveals />
     </>
   )
 }

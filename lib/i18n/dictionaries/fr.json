@@ -6,7 +6,7 @@
   "header": {
     "how": "La sélection",
     "costs": "Le grand livre",
-    "cta": "Calculer mon vrai coût"
+    "cta": "Trouvez ma voiture"
   },
   "hero": {
     "kicker": "PK 0 — CASABLANCA · DONNÉES DU 06/2026",
@@ -18,7 +18,7 @@
     "budgetLabel": "Votre budget mensuel",
     "budgetPlaceholder": "3 500",
     "budgetUnit": "DH/MOIS",
-    "cta": "Calculer mon vrai coût",
+    "cta": "Trouvez ma voiture",
     "ctaHint": "Une estimation honnête en 60 secondes. Gratuit, sans compte."
   },
   "showcase": {
@@ -29,7 +29,9 @@
     "trueLabel": "Vrai coût mensuel",
     "monthly": "4 870",
     "monthlyUnit": "DH/mois",
-    "dim": "4 099 mm"
+    "dim": "4 099 mm",
+    "sheet": "Fiche technique · N° 01",
+    "scale": "Éch. 1:24"
   },
   "selection": {
     "kicker": "N° 01 — La sélection",
@@ -42,6 +44,7 @@
     "priceUnit": "DH",
     "trueLabel": "Vrai coût mensuel",
     "monthlyUnit": "DH/mois",
+    "swipeHint": "Glissez pour voir les 3 options",
     "note": "Mensualités tout compris — financement, assurance, carburant, entretien, décote. Estimations datées · 06/2026.",
     "cars": [
       {
@@ -178,7 +181,8 @@
     "totalLabel": "Total — le vrai coût",
     "total": "4 870",
     "totalUnit": "DH/MOIS",
-    "footnote": "Exemple : Dacia Sandero Stepway neuve, Casablanca — crédit 60 mois, apport 30 %."
+    "footnote": "Exemple : Dacia Sandero Stepway neuve, Casablanca — crédit 60 mois, apport 30 %.",
+    "replay": "Rejouer"
   },
   "fourche": {
     "kicker": "N° 04 — La fourche",

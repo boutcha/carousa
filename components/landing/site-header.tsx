@@ -13,7 +13,7 @@ export function SiteHeader({
 }) {
   return (
     <header className="sticky top-0 z-40 border-b border-signal/12 bg-asphalte/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-6">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:h-16 sm:gap-6 sm:px-6">
         <Link
           href={`/${locale}`}
           className="flex items-center gap-3 font-display text-xl font-extrabold uppercase tracking-wide text-signal"
@@ -29,7 +29,7 @@ export function SiteHeader({
             {dict.header.costs}
           </a>
         </nav>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <LocaleSwitcher current={locale} />
           <Link
             href={`/${locale}/trouver`}

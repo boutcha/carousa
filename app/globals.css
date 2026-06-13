@@ -140,6 +140,88 @@ html[dir="rtl"] {
 
 /* ——— BORNE ZÉRO design system ——— */
 
+/* Touch scrollers carry no visible scrollbar */
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.swipe-cue {
+  animation: swipe-cue 1.4s ease-in-out infinite;
+}
+
+[dir="rtl"] .swipe-cue {
+  animation-name: swipe-cue-rtl;
+}
+
+@keyframes swipe-cue {
+  50% {
+    transform: translateX(7px);
+  }
+}
+
+@keyframes swipe-cue-rtl {
+  50% {
+    transform: translateX(-7px) rotate(180deg);
+  }
+}
+
+/* ——— Blueprint register: graph paper, pen strokes, leader lines ——— */
+
+/* Engineering graph paper on dark plates */
+.bp-grid {
+  background-image:
+    linear-gradient(rgb(244 245 240 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(244 245 240 / 0.04) 1px, transparent 1px),
+    linear-gradient(rgb(244 245 240 / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(244 245 240 / 0.07) 1px, transparent 1px);
+  background-size:
+    8px 8px,
+    8px 8px,
+    40px 40px,
+    40px 40px;
+}
+
+/* The pen: stroked elements draw on (requires pathLength="1" on the element) */
+.bp-draw-anim :is(path, line, circle):not(.bp-fill) {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: bp-draw-line 1.1s cubic-bezier(0.45, 0, 0.2, 1) both;
+}
+
+.bp-draw-anim .wheel :is(circle, line) {
+  animation-delay: 0.4s;
+}
+
+.bp-draw-anim .bp-fill {
+  opacity: 0;
+  animation: bp-fill-in 0.45s ease 0.95s forwards;
+}
+
+@keyframes bp-draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes bp-fill-in {
+  to {
+    opacity: 0.75;
+  }
+}
+
+/* Leader lines on the exploded cost view */
+.bp-lead {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.bp-lead.is-drawn {
+  animation: bp-draw-line 0.4s ease forwards;
+}
+
 /* Honesty hatch: estimates are never solid ink */
 .hatch {
   background-image: repeating-linear-gradient(
@@ -190,6 +272,97 @@ html[dir="rtl"] {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
   opacity: 0.03;
   mix-blend-mode: multiply;
+}
+
+/* ——— The night road: a graph-paper floor racing to a vanishing point ——— */
+
+.road-scene {
+  perspective: 470px;
+}
+
+/* The floor: oversized, tilted away; verticals converge under perspective */
+.road-plane {
+  position: absolute;
+  inset-inline: -40%;
+  top: 58%;
+  height: 90%;
+  transform: rotateX(64deg);
+  transform-origin: 50% 0;
+  overflow: hidden;
+}
+
+/* The grid scrolls one tile per loop — element transform, so it composites */
+.road-mover {
+  position: absolute;
+  inset-inline: 0;
+  top: -56px;
+  bottom: 0;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgb(244 245 240 / 0.09) 0 1px,
+      transparent 1px 72px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgb(244 245 240 / 0.09) 0 1px,
+      transparent 1px 56px
+    );
+  animation: road-run 1.3s linear infinite;
+}
+
+@keyframes road-run {
+  to {
+    transform: translateY(56px);
+  }
+}
+
+/* The centerline owns the middle lane — building up from the horizon */
+.road-center {
+  position: absolute;
+  left: 50%;
+  top: -56px;
+  bottom: 0;
+  width: 5px;
+  transform: translateX(-50%);
+  background-image: repeating-linear-gradient(
+    0deg,
+    var(--jaune) 0 34px,
+    transparent 34px 56px
+  );
+  opacity: 0.35;
+  mask-image: linear-gradient(180deg, transparent, black 45%);
+  animation: road-run-center 1.3s linear infinite;
+}
+
+@keyframes road-run-center {
+  to {
+    transform: translateX(-50%) translateY(56px);
+  }
+}
+
+/* Headlight haze at the vanishing point */
+.road-glow {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  width: 150%;
+  height: 34%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse at center,
+    rgb(239 190 69 / 0.09),
+    transparent 62%
+  );
+}
+
+/* Seat the floor's far edge into the tarmac */
+.road-fade {
+  position: absolute;
+  inset-inline: 0;
+  top: 56%;
+  height: 20%;
+  background: linear-gradient(180deg, var(--asphalte) 12%, transparent);
 }
 
 /* Road centerline — the ONE ambient animation of the hero viewport */
@@ -343,13 +516,20 @@ html[dir="rtl"] {
   }
 }
 
-/* Scroll reveals — progressive enhancement only */
-@supports (animation-timeline: view()) {
-  .view-rise {
-    animation: rise 1ms linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 40%;
-  }
+/* Scroll reveals — JS-driven (works on iOS Safari too). The observer only
+   adds .reveal-pre to elements still below the fold, so above-the-fold content
+   never flashes and nothing stays hidden if JS fails. */
+.reveal-pre {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 0.68, 0.26, 1),
+    transform 0.7s cubic-bezier(0.22, 0.68, 0.26, 1);
+}
+
+.reveal-pre.is-in {
+  opacity: 1;
+  transform: none;
 }
 
 /* Blinking caret on the budget plate */
@@ -363,45 +543,9 @@ html[dir="rtl"] {
   }
 }
 
-/* Car drive-in: the vehicle arrives, wheels turning — runs once on load */
-.drive {
-  animation: drive 1.5s cubic-bezier(0.16, 0.8, 0.24, 1) both;
-}
-
-[dir="rtl"] .drive {
-  --drive-from: 58%;
-}
-
-@keyframes drive {
-  from {
-    opacity: 0;
-    transform: translateX(var(--drive-from, -58%));
-  }
-  20% {
-    opacity: 1;
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 .wheel {
   transform-box: fill-box;
   transform-origin: center;
-}
-
-.drive .wheel {
-  animation: wheelspin 1.5s cubic-bezier(0.16, 0.8, 0.24, 1) both;
-}
-
-@keyframes wheelspin {
-  from {
-    transform: rotate(-520deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -409,13 +553,26 @@ html[dir="rtl"] {
   .stamp-strike,
   .seg-grow,
   .rise,
-  .view-rise,
+  .reveal-pre,
   .centerline,
   .caret-blink,
-  .drive,
-  .drive .wheel {
+  .swipe-cue {
     animation: none;
     opacity: 1;
+    transform: none;
+  }
+  /* the floor freezes but keeps its tilt and offsets */
+  .road-mover,
+  .road-center {
+    animation: none;
+  }
+  .bp-draw-anim :is(path, line, circle),
+  .bp-lead {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .bp-draw-anim .bp-fill {
+    opacity: 0.75;
   }
   .odo-col {
     transform: translateY(calc(var(--d) * var(--row, -1em)));

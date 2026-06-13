@@ -12,7 +12,8 @@ export function SiteFooter({
 }) {
   return (
     <footer className="tarmac relative mt-auto overflow-hidden bg-asphalte text-signal">
-      <div className="relative mx-auto max-w-6xl px-6 py-16">
+      {/* extra bottom padding clears the fixed mobile CTA bar */}
+      <div className="relative mx-auto max-w-6xl px-4 pb-32 pt-14 sm:px-6 md:py-16">
         {/* The plate */}
         <div className="plate inline-flex items-center gap-4 bg-bitume px-5 py-3">
           <span className="font-display text-2xl font-extrabold uppercase tracking-wide">
