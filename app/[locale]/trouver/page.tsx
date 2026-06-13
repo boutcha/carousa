@@ -357,101 +357,109 @@ function MatchCard({
     match.inferredFuel
 
   return (
-    <article className="plate flex min-h-[520px] flex-col bg-bitume">
-      <div className="border-b border-signal/12 p-4">
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex flex-wrap items-center gap-2">
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-jaune">
-              N° {String(index + 1).padStart(2, "0")}
-            </p>
-            <span className="border border-signal/15 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-signal/60">
-              {marketLabel}
-            </span>
-          </div>
-          <span className="font-stencil text-4xl text-signal/10">{index + 1}</span>
-        </div>
-        <h3 className="mt-6 font-display text-3xl font-bold uppercase leading-none text-signal">
-          {candidate.brand} {candidate.model}
-        </h3>
-        <p className="mt-2 min-h-10 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-2-dark">
-          {candidate.commercialName} · {candidate.trimName}
-          {candidate.modelYear ? ` · ${candidate.modelYear}` : ""}
-        </p>
-      </div>
-
-      <div className="grid grid-cols-2 border-b border-signal/12">
-        <div className="border-r border-signal/12 p-4">
-          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-2-dark">
-            {labels.priceLabel}
-          </p>
-          <p className="mt-2 font-mono text-xl font-bold text-signal" dir="ltr">
-            {formatMad(candidate.priceMad, locale)}{" "}
-            <span className="text-[10px] text-signal/55">{priceUnit}</span>
-          </p>
-        </div>
-        <div className="p-4">
-          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-2-dark">
-            {labels.monthlyLabel}
-          </p>
-          <p className="mt-2 font-mono text-xl font-bold text-jaune" dir="ltr">
-            {formatMad(estimate.totalMad, locale)}{" "}
-            <span className="text-[10px] text-jaune/80">{monthlyUnit}</span>
-          </p>
-        </div>
-      </div>
-
-      <div className="flex-1 p-4">
-        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-2-dark">
-          {labels.whyLabel}
-        </p>
-        <div className="mt-2 flex flex-wrap gap-2">
-          {match.reasons.slice(0, 4).map((reason) => (
-            <span
-              key={reason}
-              className="border border-vert-light/35 bg-vert-light/10 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-vert-light"
-            >
-              {reasonLabel(reason, labels)}
-            </span>
-          ))}
-          {criteria.fuel === "any" && (
-            <span className="border border-signal/15 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-signal/55">
-              {labels.fuelInferred}: {inferredFuelLabel}
-            </span>
-          )}
-        </div>
-
-        <div className="mt-5 space-y-2">
-          {breakdown.map((item) => (
-            <div key={item.label} className="grid grid-cols-[6rem_1fr_4.25rem] items-center gap-2">
-              <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-signal/55">
-                {item.label}
-              </span>
-              <span className="h-2 bg-asphalte">
-                <span
-                  className="block h-full bg-jaune"
-                  style={{ width: `${Math.max((item.value / maxBreakdown) * 100, 4)}%` }}
-                />
-              </span>
-              <span className="text-right font-mono text-[11px] font-bold text-signal">
-                {formatMad(item.value, locale)}
+    <Link
+      href={vehicleDetailHref(locale, candidate.id, criteria)}
+      className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-jaune"
+    >
+      <article className="plate flex min-h-[520px] flex-col bg-bitume transition-colors group-hover:border-jaune/55">
+        <div className="border-b border-signal/12 p-4">
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-jaune">
+                N° {String(index + 1).padStart(2, "0")}
+              </p>
+              <span className="border border-signal/15 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-signal/60">
+                {marketLabel}
               </span>
             </div>
-          ))}
+            <span className="font-stencil text-4xl text-signal/10">{index + 1}</span>
+          </div>
+          <h3 className="mt-6 font-display text-3xl font-bold uppercase leading-none text-signal">
+            {candidate.brand} {candidate.model}
+          </h3>
+          <p className="mt-2 min-h-10 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-2-dark">
+            {candidate.commercialName} · {candidate.trimName}
+            {candidate.modelYear ? ` · ${candidate.modelYear}` : ""}
+          </p>
         </div>
-      </div>
 
-      <div className="flex items-center justify-between gap-3 border-t border-signal/12 p-4">
-        <div className="min-w-0">
-          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-2-dark">
-            {labels.sourceLabel}
-          </p>
-          <p className="mt-1 truncate font-mono text-[11px] text-signal/70">
-            {candidate.sourceNames.join(" · ") || labels.sourceFallback}
-          </p>
+        <div className="grid grid-cols-2 border-b border-signal/12">
+          <div className="border-r border-signal/12 p-4">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-2-dark">
+              {labels.priceLabel}
+            </p>
+            <p className="mt-2 font-mono text-xl font-bold text-signal" dir="ltr">
+              {formatMad(candidate.priceMad, locale)}{" "}
+              <span className="text-[10px] text-signal/55">{priceUnit}</span>
+            </p>
+          </div>
+          <div className="p-4">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-2-dark">
+              {labels.monthlyLabel}
+            </p>
+            <p className="mt-2 font-mono text-xl font-bold text-jaune" dir="ltr">
+              {formatMad(estimate.totalMad, locale)}{" "}
+              <span className="text-[10px] text-jaune/80">{monthlyUnit}</span>
+            </p>
+          </div>
         </div>
-        <ArrowRight className="shrink-0 text-jaune" size={24} aria-hidden="true" />
-      </div>
-    </article>
+
+        <div className="flex-1 p-4">
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-2-dark">
+            {labels.whyLabel}
+          </p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {match.reasons.slice(0, 4).map((reason) => (
+              <span
+                key={reason}
+                className="border border-vert-light/35 bg-vert-light/10 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-vert-light"
+              >
+                {reasonLabel(reason, labels)}
+              </span>
+            ))}
+            {criteria.fuel === "any" && (
+              <span className="border border-signal/15 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-signal/55">
+                {labels.fuelInferred}: {inferredFuelLabel}
+              </span>
+            )}
+          </div>
+
+          <div className="mt-5 space-y-2">
+            {breakdown.map((item) => (
+              <div key={item.label} className="grid grid-cols-[6rem_1fr_4.25rem] items-center gap-2">
+                <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-signal/55">
+                  {item.label}
+                </span>
+                <span className="h-2 bg-asphalte">
+                  <span
+                    className="block h-full bg-jaune"
+                    style={{ width: `${Math.max((item.value / maxBreakdown) * 100, 4)}%` }}
+                  />
+                </span>
+                <span className="text-right font-mono text-[11px] font-bold text-signal">
+                  {formatMad(item.value, locale)}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between gap-3 border-t border-signal/12 p-4">
+          <div className="min-w-0">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-2-dark">
+              {labels.sourceLabel}
+            </p>
+            <p className="mt-1 truncate font-mono text-[11px] text-signal/70">
+              {candidate.sourceNames.join(" · ") || labels.sourceFallback}
+            </p>
+          </div>
+          <span className="inline-flex shrink-0 items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-jaune">
+            {labels.detail.open}
+            <ArrowRight className="shrink-0" size={20} aria-hidden="true" />
+          </span>
+        </div>
+      </article>
+    </Link>
   )
 }
 
@@ -506,6 +514,35 @@ function workbenchCriteriaKey(criteria: MatchCriteria) {
     criteria.priorities.join(","),
     criteria.condition,
   ].join("|")
+}
+
+function vehicleDetailHref(locale: Locale, candidateId: string, criteria: MatchCriteria) {
+  const params = new URLSearchParams()
+  params.set("mode", criteria.mode)
+  setNumber(params, "cashBudget", criteria.cashBudgetMad)
+  setNumber(params, "monthlyBudget", criteria.monthlyBudgetMad)
+  setNumber(params, "downPayment", criteria.downPaymentMad)
+  setNumber(params, "durationMonths", criteria.durationMonths)
+  params.set("usage", criteria.usage)
+  setNumber(params, "annualKm", criteria.annualKm)
+  params.set("minSeats", criteria.minSeats)
+  setNumber(params, "familySize", criteria.familySize)
+  params.set("trunkNeed", criteria.trunkNeed)
+  params.set("parkingNeed", criteria.parkingNeed)
+  if (criteria.priorities.length > 0) {
+    params.set("priorities", criteria.priorities.join(","))
+  }
+  params.set("condition", criteria.condition)
+  params.set("body", criteria.body)
+  params.set("fuel", criteria.fuel)
+
+  return `/${locale}/vehicule/${encodeURIComponent(candidateId)}?${params.toString()}`
+}
+
+function setNumber(params: URLSearchParams, key: string, value: number | null) {
+  if (value !== null) {
+    params.set(key, String(value))
+  }
 }
 
 function formatMad(value: number, locale: Locale) {

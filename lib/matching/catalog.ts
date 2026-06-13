@@ -188,3 +188,8 @@ export async function getCatalogCandidates(limit = 6000): Promise<CatalogCandida
     })
     .filter((candidate): candidate is CatalogCandidate => candidate !== null);
 }
+
+export async function getCatalogCandidateById(id: string): Promise<CatalogCandidate | null> {
+  const candidates = await getCatalogCandidates(8000);
+  return candidates.find((candidate) => candidate.id === id) ?? null;
+}
