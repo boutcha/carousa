@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "db:seed:reliability": "tsx scripts/seed-reliability.ts --apply",
-    "db:seed:reliability:dry": "tsx scripts/seed-reliability.ts --dry-run"
+    "db:seed:reliability:dry": "tsx scripts/seed-reliability.ts --dry-run",
+    "db:import:nhtsa-recalls": "tsx scripts/import-nhtsa-recalls.ts --apply --download",
+    "db:import:nhtsa-recalls:dry": "tsx scripts/import-nhtsa-recalls.ts --dry-run --download"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
