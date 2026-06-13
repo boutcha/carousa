@@ -35,6 +35,7 @@ export type MatchReason =
   | "family_format_likely"
   | "low_monthly"
   | "lower_risk"
+  | "official_recall_attention"
   | "cheap_maintenance"
   | "fuel_economy"
   | "family_space"
@@ -83,6 +84,9 @@ export type CatalogCandidate = {
   modelYear: number | null;
   priceMad: number;
   sourceNames: string[];
+  officialRecallCount: number;
+  highSeverityRecallCount: number;
+  criticalRecallCount: number;
 };
 
 export type MonthlyEstimate = {
@@ -440,6 +444,17 @@ function seatScore(candidate: CatalogCandidate, seats: MatchSeats) {
   return { points: -220, reason: null };
 }
 
+function recallRisk(candidate: CatalogCandidate) {
+  const total = candidate.officialRecallCount ?? 0;
+  const high = candidate.highSeverityRecallCount ?? 0;
+  const critical = candidate.criticalRecallCount ?? 0;
+  const lowerSeverity = Math.max(0, total - high - critical);
+  const penalty = Math.min(280, critical * 160 + high * 55 + lowerSeverity * 12);
+  const needsAttention = critical > 0 || high >= 2 || total >= 6;
+
+  return { total, high, critical, penalty, needsAttention };
+}
+
 function priorityScore(
   candidate: CatalogCandidate,
   estimate: MonthlyEstimate,
@@ -458,9 +473,10 @@ function priorityScore(
       reasons.push("low_monthly");
     }
     if (priority === "reliability") {
-      const reliabilityPoints = isNewCandidate(candidate) ? 140 : age !== null && age <= 10 ? 95 : 30;
-      points += reliabilityPoints;
-      reasons.push("lower_risk");
+      const recall = recallRisk(candidate);
+      const reliabilityPoints = isNewCandidate(candidate) ? 150 : age !== null && age <= 10 ? 105 : 35;
+      points += reliabilityPoints + (recall.total === 0 ? 35 : 0) - recall.penalty;
+      reasons.push(recall.needsAttention ? "official_recall_attention" : "lower_risk");
     }
     if (priority === "cheap_maintenance") {
       points += candidate.priceMad < 180000 ? 120 : candidate.priceMad < 300000 ? 70 : 15;
@@ -480,8 +496,9 @@ function priorityScore(
       reasons.push("long_distance_comfort");
     }
     if (priority === "safety") {
-      points += isNewCandidate(candidate) || (age !== null && age <= 8) ? 110 : 35;
-      reasons.push("safety");
+      const recall = recallRisk(candidate);
+      points += (isNewCandidate(candidate) || (age !== null && age <= 8) ? 120 : 45) - recall.penalty;
+      reasons.push(recall.needsAttention ? "official_recall_attention" : "safety");
     }
     if (priority === "resale_value") {
       points += ["Dacia", "Renault", "Toyota", "Hyundai", "Kia", "Volkswagen"].includes(candidate.brand) ? 120 : 45;

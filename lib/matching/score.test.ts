@@ -24,6 +24,9 @@ const baseCandidate: CatalogCandidate = {
   modelYear: 2026,
   priceMad: 169900,
   sourceNames: ["Wandaloo", "Moteur"],
+  officialRecallCount: 0,
+  highSeverityRecallCount: 0,
+  criticalRecallCount: 0,
 };
 
 const baseCriteria: MatchCriteria = {
@@ -437,6 +440,87 @@ describe("rankCandidates", () => {
 
     assert.equal(ranked[0]?.candidate.id, "small");
     assert.ok(ranked[0]?.reasons.includes("easy_city_parking"));
+  });
+
+  it("uses official recall facts when reliability is a priority", () => {
+    const ranked = rankCandidates(
+      [
+        {
+          ...baseCandidate,
+          id: "risky",
+          brand: "Brand A",
+          model: "Recall Heavy",
+          availabilityScope: "used_ma",
+          modelYear: 2020,
+          priceMad: 145000,
+          officialRecallCount: 8,
+          highSeverityRecallCount: 5,
+          criticalRecallCount: 1,
+        },
+        {
+          ...baseCandidate,
+          id: "cleaner",
+          brand: "Brand B",
+          model: "Cleaner Fit",
+          availabilityScope: "used_ma",
+          modelYear: 2018,
+          priceMad: 150000,
+          officialRecallCount: 0,
+          highSeverityRecallCount: 0,
+          criticalRecallCount: 0,
+        },
+      ],
+      parseMatchCriteria({
+        mode: "credit",
+        monthlyBudget: "6500",
+        priorities: "reliability",
+      }),
+      2,
+    );
+
+    assert.equal(ranked[0]?.candidate.id, "cleaner");
+    assert.ok(ranked[0]?.reasons.includes("lower_risk"));
+    assert.ok(ranked[1]?.reasons.includes("official_recall_attention"));
+  });
+
+  it("uses official high and critical recalls as safety risk signals", () => {
+    const ranked = rankCandidates(
+      [
+        {
+          ...baseCandidate,
+          id: "recall-risk",
+          brand: "Brand A",
+          model: "Recall Risk",
+          availabilityScope: "used_ma",
+          modelYear: 2021,
+          priceMad: 160000,
+          officialRecallCount: 4,
+          highSeverityRecallCount: 3,
+          criticalRecallCount: 1,
+        },
+        {
+          ...baseCandidate,
+          id: "safety-cleaner",
+          brand: "Brand B",
+          model: "Safety Cleaner",
+          availabilityScope: "used_ma",
+          modelYear: 2019,
+          priceMad: 160000,
+          officialRecallCount: 1,
+          highSeverityRecallCount: 0,
+          criticalRecallCount: 0,
+        },
+      ],
+      parseMatchCriteria({
+        mode: "credit",
+        monthlyBudget: "6500",
+        priorities: "safety",
+      }),
+      2,
+    );
+
+    assert.equal(ranked[0]?.candidate.id, "safety-cleaner");
+    assert.ok(ranked[1]?.reasons.includes("official_recall_attention"));
   });
 
   it("diversifies ranked results by model family before filling the limit", () => {

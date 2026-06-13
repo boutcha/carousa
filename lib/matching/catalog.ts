@@ -17,6 +17,9 @@ type CatalogRow = {
   model_year: number | null;
   price_mad: number | string;
   source_names: string[] | string | null;
+  official_recall_count: number | string | null;
+  high_severity_recall_count: number | string | null;
+  critical_recall_count: number | string | null;
 };
 
 type QueryResult<Row> = {
@@ -48,9 +51,24 @@ function toSourceNames(value: CatalogRow["source_names"]) {
 export async function getCatalogCandidates(limit = 6000): Promise<CatalogCandidate[]> {
   const db = getDb();
   const result = (await db.execute(sql<CatalogRow>`
-    with observed_candidates as (
+    with nhtsa_recall_summary as (
+      select
+        ia.generation_id,
+        ia.model_year_start,
+        ia.model_year_end,
+        count(distinct ki.id)::integer as official_recall_count,
+        count(distinct ki.id) filter (where ki.severity in ('high', 'critical'))::integer as high_severity_recall_count,
+        count(distinct ki.id) filter (where ki.severity = 'critical')::integer as critical_recall_count
+      from issue_applicability ia
+      join known_issues ki on ki.id = ia.known_issue_id
+      where ki.slug like 'nhtsa-recall-%'
+        and ia.generation_id is not null
+      group by ia.generation_id, ia.model_year_start, ia.model_year_end
+    ),
+    observed_candidates as (
       select
         concat(v.id::text, ':po:', po.id::text) as id,
+        g.id as generation_id,
         b.name as brand,
         m.name as model,
         v.commercial_name,
@@ -80,6 +98,7 @@ export async function getCatalogCandidates(limit = 6000): Promise<CatalogCandida
     version_year_candidates as (
       select
         concat(v.id::text, ':vy:', vy.id::text) as id,
+        g.id as generation_id,
         b.name as brand,
         m.name as model,
         v.commercial_name,
@@ -120,8 +139,16 @@ export async function getCatalogCandidates(limit = 6000): Promise<CatalogCandida
       seats,
       model_year,
       price_mad,
-      source_names
+      source_names,
+      coalesce(rs.official_recall_count, 0) as official_recall_count,
+      coalesce(rs.high_severity_recall_count, 0) as high_severity_recall_count,
+      coalesce(rs.critical_recall_count, 0) as critical_recall_count
     from priced_versions
+    left join nhtsa_recall_summary rs
+      on rs.generation_id = priced_versions.generation_id
+      and priced_versions.model_year between
+        coalesce(rs.model_year_start, priced_versions.model_year)
+        and coalesce(rs.model_year_end, priced_versions.model_year)
     where price_mad between 15000 and 1200000
     order by
       case availability_scope
@@ -154,6 +181,9 @@ export async function getCatalogCandidates(limit = 6000): Promise<CatalogCandida
         modelYear: row.model_year,
         priceMad,
         sourceNames: toSourceNames(row.source_names),
+        officialRecallCount: toNumber(row.official_recall_count) ?? 0,
+        highSeverityRecallCount: toNumber(row.high_severity_recall_count) ?? 0,
+        criticalRecallCount: toNumber(row.critical_recall_count) ?? 0,
       };
     })
     .filter((candidate): candidate is CatalogCandidate => candidate !== null);
