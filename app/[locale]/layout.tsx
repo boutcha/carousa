@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import {
   Archivo,
   B612_Mono,
@@ -9,7 +9,16 @@ import {
 } from "next/font/google"
 import { isRtl, locales, type Locale } from "@/lib/i18n/config"
 import { getDictionary } from "@/lib/i18n/get-dictionary"
+import { AnalyticsProvider } from "@/components/posthog-provider"
 import "../globals.css"
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+
+const OG_LOCALES: Record<Locale, string> = {
+  fr: "fr_MA",
+  ar: "ar_MA",
+  en: "en_US",
+}
 
 const bigShoulders = Big_Shoulders({
   subsets: ["latin"],
@@ -59,9 +68,37 @@ export async function generateMetadata({
   const locale = (await params).locale as Locale
   const dict = await getDictionary(locale)
   return {
+    metadataBase: new URL(SITE_URL),
     title: dict.meta.title,
     description: dict.meta.description,
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        fr: "/fr",
+        ar: "/ar",
+        en: "/en",
+        "x-default": "/fr",
+      },
+    },
+    openGraph: {
+      type: "website",
+      siteName: "Carsablanca",
+      title: dict.meta.title,
+      description: dict.meta.description,
+      url: `/${locale}`,
+      locale: OG_LOCALES[locale],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: dict.meta.title,
+      description: dict.meta.description,
+    },
   }
+}
+
+export const viewport: Viewport = {
+  // Tarmac chrome on mobile browsers instead of default white bars.
+  themeColor: "#15171c",
 }
 
 export default async function RootLayout({
@@ -72,6 +109,21 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>
 }>) {
   const locale = (await params).locale as Locale
+  const dict = await getDictionary(locale)
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Carsablanca",
+    url: `${SITE_URL}/${locale}`,
+    description: dict.meta.description,
+    inLanguage: locale,
+    publisher: {
+      "@type": "Organization",
+      name: "Carsablanca",
+      url: SITE_URL,
+    },
+  }
 
   return (
     <html
@@ -80,7 +132,14 @@ export default async function RootLayout({
       className={`${bigShoulders.variable} ${bigShouldersStencil.variable} ${archivo.variable} ${b612Mono.variable} ${notoKufi.variable} ${tajawal.variable} h-full antialiased`}
     >
       <body className="relative flex min-h-svh flex-col bg-background font-sans text-foreground">
-        {children}
+        <AnalyticsProvider locale={locale}>{children}</AnalyticsProvider>
+        <script
+          type="application/ld+json"
+          // first-party strings only; <-escape guards against </script> breakout
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
       </body>
     </html>
   )

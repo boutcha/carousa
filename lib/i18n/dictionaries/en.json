@@ -6,7 +6,7 @@
   "header": {
     "how": "The selection",
     "costs": "The ledger",
-    "cta": "Compute my true cost"
+    "cta": "Find my car"
   },
   "hero": {
     "kicker": "PK 0 — CASABLANCA · DATA 06/2026",
@@ -18,7 +18,7 @@
     "budgetLabel": "Your monthly budget",
     "budgetPlaceholder": "3,500",
     "budgetUnit": "MAD/MO",
-    "cta": "Compute my true cost",
+    "cta": "Find my car",
     "ctaHint": "An honest estimate in 60 seconds. Free, no account."
   },
   "showcase": {
@@ -29,7 +29,9 @@
     "trueLabel": "True monthly cost",
     "monthly": "4,870",
     "monthlyUnit": "MAD/mo",
-    "dim": "4,099 mm"
+    "dim": "4,099 mm",
+    "sheet": "Spec sheet · N° 01",
+    "scale": "Scale 1:24"
   },
   "selection": {
     "kicker": "No. 01 — The selection",
@@ -42,6 +44,7 @@
     "priceUnit": "MAD",
     "trueLabel": "True monthly cost",
     "monthlyUnit": "MAD/mo",
+    "swipeHint": "Swipe to see all 3 options",
     "note": "All-in monthlies — financing, insurance, fuel, maintenance, depreciation. Dated estimates · 06/2026.",
     "cars": [
       {
@@ -178,7 +181,8 @@
     "totalLabel": "Total — the true cost",
     "total": "4 870",
     "totalUnit": "MAD/MO",
-    "footnote": "Example: new Dacia Sandero Stepway, Casablanca — 60-month loan, 30% down."
+    "footnote": "Example: new Dacia Sandero Stepway, Casablanca — 60-month loan, 30% down.",
+    "replay": "Replay"
   },
   "fourche": {
     "kicker": "No. 04 — The fork",
@@ -233,5 +237,213 @@
     "body": "This is exactly what we are building: your budget, your needs, and a shortlist ranked by true monthly cost — contractual figures in solid ink, estimates hatched.",
     "steps": ["Budget", "Needs", "Shortlist"],
     "back": "Back to PK 0"
+  },
+  "matching": {
+    "kicker": "PK 1 — Your criteria",
+    "resultKickerMatching": "PK 2 — Matching",
+    "resultKickerCatalog": "PK 2 — Catalog",
+    "title": "Tell us your budget. We bring back the cars that make sense.",
+    "sub": "No jargon: budget, routes, fuel, format. Then we compare catalog price with estimated all-in monthly cost.",
+    "formTitle": "The counter",
+    "budgetLabel": "Monthly budget",
+    "budgetPlaceholder": "5,000",
+    "conditionLabel": "Market",
+    "usageLabel": "Your routes",
+    "annualKmLabel": "Annual mileage",
+    "bodyLabel": "Format",
+    "fuelLabel": "Fuel",
+    "seatsLabel": "Seats",
+    "submit": "Show my matches",
+    "reset": "Clear",
+    "resultsTitle": "Best matches",
+    "starterTitle": "First catalog examples",
+    "resultsSub": "Ranking based on your criteria, sourced price, and an all-in monthly estimate.",
+    "priceLabel": "Source price",
+    "monthlyLabel": "True cost / month",
+    "sourceLabel": "Sources",
+    "sourceFallback": "Catalog",
+    "whyLabel": "Why",
+    "fuelInferred": "Fuel read from the version name",
+    "emptyTitle": "No clear match with these criteria",
+    "emptyBody": "Raise the budget, switch format to “all”, or remove the fuel filter. The used-car catalog comes next.",
+    "dbErrorTitle": "Catalog unavailable",
+    "dbErrorBody": "The page is ready, but the local database must be reachable to calculate matches.",
+    "disclaimer": "Indicative estimates: 60-month financing with down payment, insurance, fuel, maintenance, fees, and depreciation. Verify before signing.",
+    "metrics": [
+      { "value": "6", "label": "costs" },
+      { "value": "2k+", "label": "versions" },
+      { "value": "60s", "label": "sort" }
+    ],
+    "conditionOptions": [
+      { "value": "all", "label": "All" },
+      { "value": "new", "label": "New Morocco" },
+      { "value": "used", "label": "Used / import" }
+    ],
+    "usageOptions": [
+      { "value": "town", "label": "Town" },
+      { "value": "mixed", "label": "Mixed" },
+      { "value": "long_distance", "label": "Long distance" }
+    ],
+    "advisor": {
+      "progress": "Step",
+      "next": "Continue",
+      "back": "Back",
+      "modeTitle": "How do you want to buy?",
+      "modeSub": "We start with payment reality, not a vague budget.",
+      "affordabilityTitle": "What limit feels comfortable?",
+      "usageTitle": "Where will you drive most?",
+      "spaceTitle": "Who and what needs to fit?",
+      "prioritiesTitle": "What matters most?",
+      "prioritiesSub": "Choose up to 3 priorities.",
+      "showResults": "Show my matches"
+    },
+    "modes": [
+      { "value": "cash", "label": "Cash", "description": "Total amount available" },
+      { "value": "credit", "label": "Credit", "description": "Monthly payment, down payment, duration" },
+      { "value": "mourabaha", "label": "Mourabaha", "description": "Monthly payment with estimated margin" },
+      { "value": "unsure", "label": "Not sure", "description": "We compare the scenarios" }
+    ],
+    "scenario": {
+      "summary": "Scenario",
+      "adjust": "Adjust",
+      "update": "Update",
+      "cashBudget": "Cash budget",
+      "monthlyBudget": "Comfortable monthly payment",
+      "downPayment": "Down payment",
+      "duration": "Duration",
+      "familySize": "Family size",
+      "trunkNeed": "Trunk",
+      "parkingNeed": "Easy parking",
+      "advancedMarket": "Advanced market",
+      "allMarkets": "Auto",
+      "newMarket": "New",
+      "usedMarket": "Used / import"
+    },
+    "durationOptions": [
+      { "value": "48", "label": "48 months" },
+      { "value": "60", "label": "60 months" },
+      { "value": "72", "label": "72 months" },
+      { "value": "84", "label": "84 months" }
+    ],
+    "needLevels": [
+      { "value": "low", "label": "Low" },
+      { "value": "medium", "label": "Medium" },
+      { "value": "high", "label": "High" }
+    ],
+    "priorityOptions": [
+      { "value": "lowest_monthly", "label": "Lowest monthly" },
+      { "value": "reliability", "label": "Reliability" },
+      { "value": "cheap_maintenance", "label": "Cheap maintenance" },
+      { "value": "fuel_economy", "label": "Fuel economy" },
+      { "value": "family_space", "label": "Family space" },
+      { "value": "long_distance_comfort", "label": "Long trips" },
+      { "value": "safety", "label": "Safety" },
+      { "value": "resale_value", "label": "Resale" },
+      { "value": "premium_feel", "label": "Premium feel" },
+      { "value": "easy_city_parking", "label": "Easy city parking" }
+    ],
+    "candidateLabels": {
+      "new": "New",
+      "used": "Used",
+      "import": "Import baseline",
+      "bestValue": "Best value",
+      "lowerRisk": "Lower risk",
+      "moreSpace": "More space"
+    },
+    "reasonLabels": {
+      "budget_fit": "Fits budget",
+      "recent_year": "Recent model year",
+      "family_format_likely": "Likely family format",
+      "low_monthly": "Low monthly",
+      "lower_risk": "Lower risk",
+      "official_recall_attention": "Recall attention",
+      "cheap_maintenance": "Accessible maintenance",
+      "fuel_economy": "Fuel efficient",
+      "family_space": "Family space",
+      "long_distance_comfort": "Road comfort",
+      "safety": "Safety",
+      "resale_value": "Easy resale",
+      "premium_feel": "Premium feel",
+      "easy_city_parking": "Easy in town",
+      "new_market": "New Morocco",
+      "source_price": "Source price",
+      "seats:5_plus": "5+ seats",
+      "seats:7_plus": "7+ seats"
+    },
+    "detail": {
+      "open": "View details",
+      "back": "Back to matches",
+      "kicker": "Vehicle file",
+      "sourcePrice": "Source price",
+      "trueMonthly": "True monthly",
+      "risk": "Evidence risk",
+      "riskLow": "Low",
+      "riskMedium": "Medium",
+      "riskHigh": "High",
+      "market": "Market",
+      "generation": "Generation",
+      "fuel": "Fuel",
+      "officialRecalls": "Official recalls",
+      "highCriticalRecalls": "High / critical recalls",
+      "factsTitle": "Facts",
+      "prosTitle": "Pros",
+      "consTitle": "Cons",
+      "costTitle": "Monthly cost breakdown",
+      "specsTitle": "Technical specs",
+      "issuesTitle": "Known issues and recalls",
+      "maintenanceTitle": "Maintenance schedule",
+      "featuresTitle": "Features",
+      "emptyPros": "No strong advantage has been inferred yet.",
+      "emptyCons": "No major caution has been inferred yet.",
+      "emptyIssues": "No matched recall or known-issue facts in the database.",
+      "emptyMaintenance": "No maintenance schedule rows are attached yet.",
+      "emptyFeatures": "No feature rows are attached yet.",
+      "powertrain": "Powertrain",
+      "transmission": "Transmission",
+      "engine": "Engine",
+      "power": "Power",
+      "torque": "Torque",
+      "consumption": "Mixed consumption",
+      "battery": "Battery",
+      "seats": "Seats",
+      "body": "Body",
+      "sourceConfidence": "Source confidence",
+      "km": "km",
+      "months": "months",
+      "asNeeded": "As needed"
+    },
+    "annualKmOptions": [
+      { "value": "10000", "label": "10,000 km" },
+      { "value": "15000", "label": "15,000 km" },
+      { "value": "25000", "label": "25,000 km" }
+    ],
+    "bodyOptions": [
+      { "value": "any", "label": "All" },
+      { "value": "hatchback", "label": "City car" },
+      { "value": "suv", "label": "SUV" },
+      { "value": "sedan", "label": "Sedan" },
+      { "value": "van", "label": "Family" },
+      { "value": "pickup", "label": "Pick-up" }
+    ],
+    "fuelOptions": [
+      { "value": "any", "label": "All" },
+      { "value": "gasoline", "label": "Gasoline" },
+      { "value": "diesel", "label": "Diesel" },
+      { "value": "hybrid", "label": "Hybrid" },
+      { "value": "electric", "label": "Electric" }
+    ],
+    "seatOptions": [
+      { "value": "any", "label": "Any" },
+      { "value": "5", "label": "5 seats" },
+      { "value": "7", "label": "7 seats" }
+    ],
+    "breakdown": {
+      "financing": "Financing",
+      "insurance": "Insurance",
+      "fuel": "Fuel",
+      "maintenance": "Maintenance",
+      "fees": "Fees",
+      "depreciation": "Depreciation"
+    }
   }
 }

@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-06-12T13:36:07.440Z",
+  "source": "https://www.wandaloo.com/neuf/",
+  "scope": "Official new-car catalogue rows where marcher=1 and publier=1 from Wandaloo public endpoints.",
+  "brands_in_select": 67,
+  "brands_with_versions": 58,
+  "models_with_versions": 360,
+  "version_trim_rows": 952,
+  "empty_model_entries": 9,
+  "failed_model_entries": 0,
+  "failedModelEntries": []
+}

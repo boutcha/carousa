@@ -8,21 +8,27 @@ export function Roadbook({ dict }: { dict: Dictionary }) {
       id="how"
       className="paper-grain relative scroll-mt-20 bg-paper text-asphalte"
     >
-      <div className="relative mx-auto max-w-6xl px-6 py-24">
+      <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
         <SectionHeading kicker={dict.roadbook.kicker} title={dict.roadbook.title} />
-        <div className="relative mt-14">
+        <div className="relative mt-10 md:mt-14">
           <div
             className="roadline absolute inset-x-0 top-1/2 hidden md:block"
+            aria-hidden="true"
+          />
+          {/* On mobile the dashes run vertically between the plaques */}
+          <div
+            className="roadline-v absolute inset-y-4 start-8 md:hidden"
             aria-hidden="true"
           />
           <div className="relative grid gap-6 md:grid-cols-3">
             {dict.roadbook.steps.map((step) => (
               <div
                 key={step.pk}
-                className="view-rise border border-asphalte/15 bg-signal"
+                data-reveal
+                className="border border-asphalte/15 bg-signal"
               >
                 <div className="flex h-2 bg-rouge" aria-hidden="true" />
-                <div className="p-6">
+                <div className="p-5 sm:p-6">
                   <p className="font-stencil text-5xl font-bold leading-none text-asphalte/15">
                     {step.pk}
                   </p>

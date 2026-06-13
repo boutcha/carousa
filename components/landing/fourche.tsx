@@ -17,19 +17,19 @@ export function Fourche({ dict }: { dict: Dictionary }) {
   const t = dict.fourche
   return (
     <section className="paper-grain relative bg-paper text-asphalte">
-      <div className="relative mx-auto max-w-6xl px-6 py-24">
+      <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
         <SectionHeading kicker={t.kicker} title={t.title} sub={t.sub} />
 
-        <div className="roadline-v mx-auto mt-10 h-12" aria-hidden="true" />
+        <div className="roadline-v mx-auto mt-8 h-10 md:mt-10 md:h-12" aria-hidden="true" />
 
         <div className="mt-0 border-2 border-asphalte bg-signal">
           {/* Direction-sign headers */}
-          <div className="grid grid-cols-[minmax(0,1fr)_96px_96px] sm:grid-cols-[minmax(0,1fr)_140px_140px]">
+          <div className="grid grid-cols-[minmax(0,1fr)_84px_84px] sm:grid-cols-[minmax(0,1fr)_140px_140px]">
             <div />
-            <div className="bg-asphalte px-2 py-3 text-center font-display text-lg font-bold uppercase tracking-wide text-signal rtl:tracking-normal">
+            <div className="bg-asphalte px-1 py-3 text-center font-display text-base font-bold uppercase tracking-wide text-signal sm:px-2 sm:text-lg rtl:tracking-normal">
               {t.colNew}
             </div>
-            <div className="border-s border-signal/20 bg-asphalte px-2 py-3 text-center font-display text-lg font-bold uppercase tracking-wide text-signal rtl:tracking-normal">
+            <div className="border-s border-signal/20 bg-asphalte px-1 py-3 text-center font-display text-base font-bold uppercase tracking-wide text-signal sm:px-2 sm:text-lg rtl:tracking-normal">
               {t.colUsed}
             </div>
           </div>
@@ -37,7 +37,7 @@ export function Fourche({ dict }: { dict: Dictionary }) {
           {t.rows.map((row) => (
             <div
               key={row.label}
-              className="grid grid-cols-[minmax(0,1fr)_96px_96px] items-baseline border-t border-asphalte/12 px-4 py-3 sm:grid-cols-[minmax(0,1fr)_140px_140px] sm:px-5"
+              className="grid grid-cols-[minmax(0,1fr)_84px_84px] items-baseline border-t border-asphalte/12 px-3 py-3 sm:grid-cols-[minmax(0,1fr)_140px_140px] sm:px-5"
             >
               <span className="leader flex min-w-0 items-baseline pe-3 text-sm text-asphalte">
                 <span className="bg-signal pe-2">{row.label}</span>
@@ -66,8 +66,8 @@ export function Fourche({ dict }: { dict: Dictionary }) {
           ))}
 
           {/* Totals */}
-          <div className="grid grid-cols-[minmax(0,1fr)_96px_96px] items-baseline border-t-2 border-asphalte bg-paper px-4 py-4 sm:grid-cols-[minmax(0,1fr)_140px_140px] sm:px-5">
-            <span className="font-display text-lg font-bold uppercase tracking-tight rtl:tracking-normal">
+          <div className="grid grid-cols-[minmax(0,1fr)_84px_84px] items-baseline border-t-2 border-asphalte bg-paper px-3 py-4 sm:grid-cols-[minmax(0,1fr)_140px_140px] sm:px-5">
+            <span className="font-display text-base font-bold uppercase tracking-tight sm:text-lg rtl:tracking-normal">
               {t.totalLabel}
             </span>
             <span className="text-center font-mono text-base font-bold" dir="ltr">

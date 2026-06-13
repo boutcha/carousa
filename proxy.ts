@@ -15,5 +15,8 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)"],
+  // Exclude all of _next (static, image, and the dev webpack-hmr socket — a
+  // narrower match was 307-redirecting /_next/webpack-hmr and breaking HMR)
+  // and /ingest (the PostHog reverse proxy — a locale redirect would kill it).
+  matcher: ["/((?!api|_next|ingest|favicon.ico|.*\\..*).*)"],
 }

@@ -1,42 +1,65 @@
 import type { Locale } from "@/lib/i18n/config"
 import type { Dictionary } from "@/lib/i18n/get-dictionary"
-import { CarArt, DimensionLine } from "./car-art"
+import { CostExplosion } from "./cost-explosion"
+import { DataRoad } from "./data-road"
 
+/* Mobile order: the claim, then the proof (the price explodes — no brand,
+   just the lesson), then the ask. On lg the proof is the right column. */
 export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const t = dict.hero
-  const sc = dict.showcase
 
   return (
     <section className="tarmac relative overflow-hidden bg-asphalte">
-      {/* The one ambient animation of this viewport */}
-      <div
-        className="centerline absolute inset-x-0 bottom-16 opacity-25"
-        aria-hidden="true"
-      />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 pb-28 pt-14 lg:grid-cols-[6.5fr_5.5fr] lg:gap-14 lg:pb-32 lg:pt-20">
+      {/* Ambient night-road backdrop (canvas; static under reduced-motion) */}
+      <DataRoad className="pointer-events-none absolute inset-0 z-0 h-full w-full" />
+      <div className="relative z-10 mx-auto grid max-w-6xl gap-y-8 px-4 pb-24 pt-9 sm:px-6 lg:grid-cols-[6.5fr_5.5fr] lg:items-center lg:gap-x-14 lg:gap-y-7 lg:pb-32 lg:pt-20">
+        {/* 1 — the claim */}
         <div className="min-w-0">
-          <p className="rise font-mono text-[11px] uppercase tracking-[0.28em] text-jaune">
+          <p className="rise font-mono text-[11px] uppercase tracking-[0.18em] text-jaune sm:tracking-[0.28em]">
             {t.kicker}
           </p>
-          <h1 className="rise mt-6 font-display font-bold uppercase leading-[0.95] tracking-tight text-signal [animation-delay:.08s] rtl:leading-[1.22] rtl:tracking-normal">
-            <span className="block text-[clamp(3rem,7.5vw,5.1rem)] rtl:text-[clamp(2.5rem,6vw,4.2rem)]">
+          <h1 className="rise mt-5 font-display font-bold uppercase leading-[0.95] tracking-tight text-signal [animation-delay:.08s] lg:mt-6 rtl:leading-[1.22] rtl:tracking-normal">
+            <span className="block text-[clamp(2.55rem,10.5vw,5.1rem)] rtl:text-[clamp(2.1rem,8.5vw,4.2rem)]">
               {t.h1l1}
             </span>
-            <span className="block text-[clamp(3rem,7.5vw,5.1rem)] rtl:text-[clamp(2.5rem,6vw,4.2rem)]">
+            <span className="block text-[clamp(2.55rem,10.5vw,5.1rem)] rtl:text-[clamp(2.1rem,8.5vw,4.2rem)]">
               {t.h1l2}
             </span>
-            <span className="hatch-underline mt-1 inline-block text-[clamp(3rem,7.5vw,5.1rem)] rtl:text-[clamp(2.5rem,6vw,4.2rem)]">
+            <span className="hatch-underline mt-1 inline-block text-[clamp(2.55rem,10.5vw,5.1rem)] rtl:text-[clamp(2.1rem,8.5vw,4.2rem)]">
               {t.h1l3}
             </span>
           </h1>
-          <p className="rise mt-7 max-w-xl text-lg leading-relaxed text-ink-2-dark [animation-delay:.16s]">
+        </div>
+
+        {/* 2 — the proof: an anonymous sticker price explodes into the six
+            real monthly costs. No brand, no model — just the lesson. */}
+        <div className="relative mx-auto w-full min-w-0 max-w-[480px] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:mx-0 lg:max-w-none">
+          <CostExplosion
+            eager
+            segments={dict.instrument.segments}
+            price={dict.showcase.price}
+            priceUnit={dict.showcase.priceUnit}
+            priceLabel={dict.selection.priceLabel}
+            total={dict.ledger.total}
+            totalUnit={dict.ledger.totalUnit}
+            trueLabel={dict.selection.trueLabel}
+            legendContract={dict.instrument.legendContract}
+            legendEstimate={dict.instrument.legendEstimate}
+            replayHint={dict.ledger.replay}
+            stamp={t.stamp}
+          />
+        </div>
+
+        {/* 3 — the ask */}
+        <div className="min-w-0 lg:col-start-1 lg:row-start-2">
+          <p className="rise max-w-xl text-base leading-relaxed text-ink-2-dark [animation-delay:.16s] sm:text-lg">
             {t.sub}
           </p>
 
           {/* Le Guichet — budget input as an embossed plate */}
           <form
             action={`/${locale}/trouver`}
-            className="rise mt-10 max-w-md [animation-delay:.24s]"
+            className="rise mt-7 max-w-md [animation-delay:.24s] lg:mt-10"
           >
             <label
               htmlFor="budget"
@@ -71,61 +94,6 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
               {t.ctaHint}
             </p>
           </form>
-        </div>
-
-        {/* The showcase: the car arrives first; the price is the proof */}
-        <div className="relative min-w-0">
-          <div className="drive text-signal">
-            <CarArt body="stepway" className="mx-auto w-full max-w-[440px]" />
-          </div>
-          {/* the road under the car */}
-          <div className="mx-auto -mt-[7px] h-[2.5px] max-w-[460px] bg-signal/60" aria-hidden="true" />
-          <div className="mx-auto mt-3 max-w-[440px]">
-            <DimensionLine label={sc.dim} />
-          </div>
-
-          <div className="rise relative mx-auto mt-6 max-w-[440px] [animation-delay:.9s]">
-            <div
-              className="stamp-strike absolute -top-5 -end-2 z-10 border-[3px] border-rouge px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-rouge [animation-delay:1.7s]"
-            >
-              {t.stamp}
-            </div>
-            <div className="plate flex flex-wrap items-stretch bg-bitume">
-              <div className="min-w-0 flex-1 px-4 py-3">
-                <p className="truncate font-display text-lg font-bold uppercase tracking-tight text-signal rtl:tracking-normal">
-                  {sc.name}
-                </p>
-                <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.16em] text-vert-light">
-                  {sc.badge}
-                </p>
-              </div>
-              <div className="flex items-center border-s border-signal/15 px-4 font-mono text-lg font-bold text-signal">
-                <span dir="ltr">{sc.price}</span>
-                <span className="ms-1.5 text-[10px] text-ink-2-dark">
-                  {sc.priceUnit}
-                </span>
-              </div>
-            </div>
-            <div className="plate mt-2 flex items-center justify-between gap-3 bg-bitume px-4 py-3">
-              <span className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-2-dark">
-                <span className="hatch h-1.5 w-3" aria-hidden="true" />
-                {sc.trueLabel}
-              </span>
-              <a
-                href="#costs"
-                className="group flex items-baseline gap-1.5 whitespace-nowrap font-mono text-xl font-bold text-jaune"
-              >
-                <span dir="ltr">{sc.monthly}</span>
-                <span className="text-[10px] uppercase">{sc.monthlyUnit}</span>
-                <span
-                  className="ms-1 inline-block transition-transform group-hover:translate-x-0.5 rtl:rotate-180"
-                  aria-hidden="true"
-                >
-                  →
-                </span>
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </section>

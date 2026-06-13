@@ -12,17 +12,18 @@ export function GrandLivre({ dict }: { dict: Dictionary }) {
       id="costs"
       className="tarmac relative scroll-mt-20 overflow-hidden bg-asphalte"
     >
-      <div className="relative mx-auto max-w-6xl px-6 py-24">
+      <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
         <SectionHeading kicker={t.kicker} title={t.title} sub={t.sub} onDark />
 
-        <div className="mt-14 border-t border-signal/15">
+        <div className="mt-10 border-t border-signal/15 md:mt-14">
           {t.rows.map((row, i) => (
             <div
               key={row.name}
-              className="view-rise grid items-center gap-x-6 gap-y-3 border-b border-signal/12 py-6 transition-colors hover:bg-bitume/60 md:grid-cols-[3rem_minmax(0,1.1fr)_minmax(0,200px)_minmax(0,180px)]"
+              data-reveal
+              className="grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-x-3 gap-y-3.5 border-b border-signal/12 py-5 transition-colors hover:bg-bitume/60 md:grid-cols-[3rem_minmax(0,1.1fr)_minmax(0,200px)_minmax(0,180px)] md:items-center md:gap-x-6 md:gap-y-3 md:py-6"
             >
               <span
-                className="font-stencil text-3xl leading-none text-signal/25"
+                className="font-stencil text-2xl leading-none text-signal/25 md:text-3xl"
                 aria-hidden="true"
               >
                 0{i + 1}
@@ -49,7 +50,7 @@ export function GrandLivre({ dict }: { dict: Dictionary }) {
                   {row.source}
                 </p>
               </div>
-              <div className="flex flex-col items-start gap-1.5 md:items-end">
+              <div className="col-start-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 md:col-start-auto md:flex-col md:items-end md:gap-1.5">
                 <span
                   className="font-mono text-xl font-bold text-signal"
                   dir="ltr"
@@ -69,7 +70,7 @@ export function GrandLivre({ dict }: { dict: Dictionary }) {
                   labelContract={dict.instrument.legendContract}
                   labelEstimate={dict.instrument.legendEstimate}
                 />
-                <p className="font-mono text-[10px] text-ink-2-dark md:hidden">
+                <p className="w-full font-mono text-[10px] text-ink-2-dark md:hidden">
                   {row.source}
                 </p>
               </div>
@@ -77,8 +78,8 @@ export function GrandLivre({ dict }: { dict: Dictionary }) {
           ))}
 
           {/* The audit foot */}
-          <div className="flex flex-wrap items-center justify-between gap-5 bg-bitume px-5 py-6 sm:px-7">
-            <span className="font-display text-2xl font-bold uppercase tracking-tight text-signal rtl:tracking-normal">
+          <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 bg-bitume px-4 py-5 sm:px-7 sm:py-6">
+            <span className="font-display text-xl font-bold uppercase tracking-tight text-signal sm:text-2xl rtl:tracking-normal">
               {t.totalLabel}
             </span>
             <Odometer value={t.total} unit={t.totalUnit} size="sm" />
